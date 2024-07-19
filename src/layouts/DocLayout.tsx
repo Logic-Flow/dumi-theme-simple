@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useOutlet, useLocation, useSiteData } from 'dumi';
-import { Index } from './entry/Index';
+import { Index } from './entry';
 import { Manual } from './entry/Manual';
 // 用户手动添加自己的
 import '../slots/global';
@@ -16,12 +16,14 @@ export default () => {
     navs
   } = themeConfig;
 
+
+
   // 打印控制台文案
   useEffect(() => {
-    console.log("%cAntV 让数据栩栩如生", "color:#5B7102; font-size: 20px;"),
-    console.log("%c新一代数据可视化解决方案", "color:#5B7102;"),
-    console.log("--------------------------"),
-    console.log("%c关注我们的微信公众号 %c“数据可视化 AntV”%c，获取我们团队最新的进展、动态、分享，也欢迎加入我们！", "color: red", "color: pink", "color: red");
+    console.log("%cLogicFlow 让流程图绘制更方便快捷", "color:#5B7102; font-size: 20px;")
+    console.log("%c打造新一代流程图绘制和执行的解决方案", "color:#5B7102;")
+    console.log("--------------------------")
+    console.log("%c添加我们的官方微信号 %c“logic-flow”%c，申请加入 LogicFlow 用户群讨论问题，也欢迎加入我们共建项目！", "color: red", "color: pink", "color: red")
   }, []);
 
   const outlet = useOutlet();

@@ -121,7 +121,7 @@ export const ExampleSider: React.FC<ExampleSiderProps> = (props) => {
           style={{
             backgroundImage: `url(${
               demo.screenshot ||
-              'https://gw.alipayobjects.com/os/s/prod/antv/assets/image/screenshot-placeholder-b8e70.png'
+              'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/screenshot-placeholder-white.png'
             })`
           }}
           title={demo.title[locale.id]}

@@ -15,7 +15,6 @@ const MenuIcon = createFromIconfontCN({
  *
  * @param {LeftMenuProps} props 相关参数，详见类型定义
  * @returns {React.FC} React.FC
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 export const LeftMenu: React.FC<LeftMenuProps> = (props) => {
   const { exampleTopics } = props;

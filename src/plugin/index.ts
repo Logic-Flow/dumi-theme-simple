@@ -78,7 +78,7 @@ export default (api: IApi) => {
       content: `
 import React from 'react';
 import { useOutlet, useSiteData } from 'dumi';
-import { ThemeAntVContext } from '${winPath(
+import { LogicFlowThemeContext } from '${winPath(
         path.join(__dirname, '../context'),
       )}';
 
@@ -86,7 +86,7 @@ export default function ThemeAntVContextWrapper() {
   const outlet = useOutlet();
 
   return (
-    <ThemeAntVContext.Provider
+    <LogicFlowThemeContext.Provider
       value={{
         meta: ${JSON.stringify({
           exampleTopics: getExamplesPageTopics(
@@ -97,7 +97,7 @@ export default function ThemeAntVContextWrapper() {
       }}
     >
       {outlet}
-    </ThemeAntVContext.Provider>
+    </LogicFlowThemeContext.Provider>
   );
 }
       `,

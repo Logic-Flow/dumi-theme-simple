@@ -55,13 +55,12 @@ export const Detail: React.FC<DetailProps> = ({
   const lang = useLocale().id
 
   useEffect(() => {
-    fetch('https://assets.antv.antgroup.com/antv/banner-messages.json', // 生产环境
-         // 'https://site-data-pre.alipay.com/antv/banner-messages.json', // 预发测试
+    fetch('https://my-json-server.typicode.com/Logic-Flow/logicflow-sites-data/bannerMessages', // 生产环境
     )
       .then((res) => res.json())
       .then((data) => {
         setRemoteNews(data);
-      }).catch(e => {
+      }).catch(() => {
         setRemoteNews([]);
       });
   }, []);

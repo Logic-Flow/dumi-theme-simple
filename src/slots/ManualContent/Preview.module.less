@@ -1,3 +1,4 @@
+@import '../_.less';
 @tool-width: 28px;
 
 .preview {
@@ -7,7 +8,7 @@
     position: absolute;
     list-style: none;
     padding: 0;
-    margin: 0; 
+    margin: 0;
     margin-left: -@tool-width;
     left: 0;
     top: 0;
@@ -30,7 +31,7 @@
     }
 
     .li:hover {
-      color: #873bf4;
+      color: @primary-color;
     }
 
     .li:active {
@@ -44,9 +45,9 @@
 
   .loading {
     display: block;
-    color: #873bf4;
+    color: @primary-color;
     padding: 0.25rem 0;
-    border-left: 3px solid #873bf4;
+    border-left: 3px solid @primary-color;
     padding-left: 12px;
   }
 

@@ -54,7 +54,7 @@ const Banner: React.FC<BannerProps> = ({
 }) => {
   const locale = useLocale()
   const lang = locale.id.includes('zh') ? 'zh' : 'en';
-  const notificationsUrl = `https://my-json-server.typicode.com/antvis/antvis-sites-data/notifications?lang=${lang}`;
+  const notificationsUrl = `https://my-json-server.typicode.com/Logic-Flow/logicflow-sites-data/notifications?lang=${lang}`;
 
   const [remoteNews, setRemoteNews] = useState<NotificationProps[]>([]);
 

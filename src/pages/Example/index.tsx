@@ -4,7 +4,7 @@ import { every, find, get } from 'lodash-es';
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useSnapshot } from 'valtio';
-import { ThemeAntVContext } from '../../context';
+import { LogicFlowThemeContext } from '../../context';
 import { store } from '../../model';
 import { API } from '../../slots/API';
 import { CodeRunner } from '../../slots/CodeRunner';
@@ -46,7 +46,7 @@ const Example: React.FC = () => {
   const nav = useNavigate();
   const { topic, example } = useParams<ExampleParams>();
   /** 示例页面的元数据信息 */
-  const metaData: any = useContext(ThemeAntVContext);
+  const metaData: any = useContext(LogicFlowThemeContext);
   const locale = useLocale();
   const { themeConfig } = useSiteData();
 

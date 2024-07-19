@@ -2,7 +2,7 @@ import { useSiteData } from 'dumi';
 import { get } from 'lodash-es';
 import React, { useContext } from 'react';
 import { ErrorBoundary } from 'react-error-boundary'
-import { ThemeAntVContext } from '../../context';
+import { LogicFlowThemeContext } from '../../context';
 import { CodeRunner } from '../../slots/CodeRunner';
 
 import styles from './index.module.less';
@@ -31,7 +31,7 @@ export type PlaygroundProps = {
  */
 const Playground: React.FC<PlaygroundProps> = ({ rid, path, ratio, height = 400 }) => {
   /** 示例页面的元数据信息 */
-  const { meta }: any = useContext(ThemeAntVContext);
+  const { meta }: any = useContext(LogicFlowThemeContext);
   const { exampleTopics } = meta;
   // 'case/area/demo/area5.ts'
   const [_, topic, example, demo] = path.match(/([\w-]+)\/([\w-]+)\/demo\/([\w-]+)/i) as string[];

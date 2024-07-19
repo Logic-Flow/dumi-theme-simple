@@ -6,27 +6,25 @@ export default defineConfig({
     { id: 'zh', name: '中文' },
     { id: 'en', name: 'English' },
   ],
-  title: 'dumi-theme-antv 主题包', // 网站header标题
+  title: 'LogicFlow dumi-theme-simple 主题包', // 网站header标题
   favicons: [
-    'https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*7svFR6wkPMoAAAAAAAAAAAAADmJ7AQ/original',
+    'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/favicon.png',
   ], // 网站 favicon
   metas: [
     // 自定义 meta 标签
-    { name: 'keywords', content: 'dumi-theme-antv' },
-    { name: 'description', content: '基于 dumi2 的 AntV 官网主题包' },
+    { name: 'keywords', content: 'dumi-theme-simple' },
+    { name: 'description', content: '基于 dumi2 的 LogicFlow 官网主题包' },
   ],
   themeConfig: {
-    title: 'dumi-theme-antv',
-    description: '基于 dumi2 的 AntV 官网主题包',
+    title: 'dumi-theme-simple',
+    description: '基于 dumi2 的 LogicFlow 官网主题包',
     defaultLanguage: 'zh', // 默认语言
-    isAntVSite: false, // 是否是 AntV 的大官网
     footerTheme: 'light',
-    siteUrl: 'https://antv.vision', // 官网地址
+    siteUrl: '/', // 官网地址
     githubUrl: repository.url, // GitHub 地址
     showSearch: true, // 是否显示搜索框
     showGithubCorner: true, // 是否显示头部的 GitHub icon
     showGithubStars: true, // 是否显示 GitHub star 数量
-    showAntVProductsCard: true, // 是否显示 AntV 产品汇总的卡片
     showLanguageSwitcher: true, // 是否显示官网语言切换
     showWxQrcode: true, // 是否显示头部菜单的微信公众号
     showChartResize: true, // 是否在 demo 页展示图表视图切换

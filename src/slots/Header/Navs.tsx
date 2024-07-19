@@ -1,6 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
-import { isEqual, size } from 'lodash-es';
+import { size } from 'lodash-es';
 import { Link, useLocale } from 'dumi';
 import { Dropdown, Menu } from 'antd';
 import { DownOutlined, LinkOutlined } from '@ant-design/icons';
@@ -50,7 +50,7 @@ export const Navs: React.FC<NavProps> = ({ navs, path }) => {
           // 去除 docs 防止新页面 404 和 本页重新刷新。
           href = href.replace(/^\/docs(?=\/)/, '');
 
-          if (locale.id == 'en' && !href.startsWith('http')) {
+          if (locale.id === 'en' && !href.startsWith('http')) {
             href = `/en${href}`;
           }
 

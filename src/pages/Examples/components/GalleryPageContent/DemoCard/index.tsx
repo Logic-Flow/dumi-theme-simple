@@ -11,7 +11,6 @@ import styles from '../../../index.module.less';
  *
  * @param {DemoCardProps} props 相关参数，详见类型定义
  * @returns {React.FC} React.FC
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 export const DemoCard: React.FC<DemoCardProps> = (props) => {
   const { demo, topicId, exampleId } = props;

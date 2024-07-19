@@ -10,7 +10,6 @@ import styles from '../../index.module.less';
  *
  * @param {GalleryPageContentProps} props 相关参数，详见类型定义
  * @returns {React.FC} React.FC
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 export const GalleryPageContent: React.FC<GalleryPageContentProps> = (props) => {
   const { exampleTopics } = props;

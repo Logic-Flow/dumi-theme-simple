@@ -18,8 +18,8 @@ export const Index = () => {
   const locale = useLocale()
   const { themeConfig } = useSiteData();
   const {
-    title, siteUrl, githubUrl, isAntVSite,
-    showSearch, showGithubCorner, showGithubStars, showLanguageSwitcher, showWxQrcode, defaultLanguage, showAntVProductsCard,
+    title, siteUrl, githubUrl,
+    showSearch, showGithubCorner, showGithubStars, showLanguageSwitcher, showWxQrcode, defaultLanguage,
     versions, ecosystems, navs,
     detail, news, companies, features, cases, className,
     style,
@@ -54,7 +54,7 @@ export const Index = () => {
       {size(detail) ? <Detail {...detailProps} /> : null}
       {size(featuresProps.features) ? <Features {...featuresProps} /> : null}
       {size(cases) ? <Cases {...casesProps} /> : null}
-      {size(companies) ? <Companies title={<FormattedMessage id={isAntVSite ? "2000+ 公司正在使用" : "感谢信赖"} />} companies={companies} /> : null}
+      {size(companies) ? <Companies title={<FormattedMessage id="感谢信赖" />} companies={companies} /> : null}
       <Footer />
     </>
   );

@@ -50,31 +50,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
       title: 'Resources',
       items: [
         {
-          title: 'Ant Design',
-          url: 'https://ant.design',
+          title: 'LogicFlow',
+          url: 'https://site.logic-flow.cn',
           openExternal: true,
         },
         {
-          title: 'Galacea Effects',
+          title: 'LogicFlow Engine',
           url: 'https://galacean.antgroup.com/effects/',
-          openExternal: true,
-        },
-        {
-          title: 'Umi',
-          description: <FormattedMessage id="React 应用开发框架" />,
-          url: 'https://umijs.org',
-          openExternal: true,
-        },
-        {
-          title: 'Dumi',
-          description: <FormattedMessage id="组件/文档研发工具" />,
-          url: 'https://d.umijs.org',
-          openExternal: true,
-        },
-        {
-          title: 'ahooks',
-          description: <FormattedMessage id="React Hooks 库" />,
-          url: 'https://github.com/alibaba/hooks',
           openExternal: true,
         },
       ],
@@ -110,25 +92,19 @@ export const Footer: React.FC<FooterProps> = (props) => {
         {
           icon: <GithubOutlined />,
           title: 'GitHub',
-          url: 'https://github.com/antvis',
+          url: 'https://github.com/didi/logicflow',
           openExternal: true,
         },
         {
           icon: <QuestionCircleOutlined />,
           title: <FormattedMessage id="StackOverflow" />,
-          url: 'http://stackoverflow.com/questions/tagged/antv',
+          url: 'http://stackoverflow.com/questions/tagged/logicflow',
           openExternal: true,
         },
       ],
     };
 
     const more = {
-      icon: (
-        <img
-          src='https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg'
-          alt='more products'
-        />
-      ),
       title: <FormattedMessage id="更多产品" />,
       items: [
         {
@@ -141,56 +117,6 @@ export const Footer: React.FC<FooterProps> = (props) => {
           title: 'Ant Design',
           url: 'https://ant.design',
           description: <FormattedMessage id="企业级 UI 设计语言" />,
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src='https://gw.alipayobjects.com/zos/rmsportal/XuVpGqBFxXplzvLjJBZB.svg'
-              alt='yuque'
-            />
-          ),
-          title: <FormattedMessage id="语雀" />,
-          url: 'https://yuque.com',
-          description: <FormattedMessage id="知识创作与分享工具" />,
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src='https://gw.alipayobjects.com/zos/antfincdn/v2%24rh7lqpu/82f338dd-b0a6-41bc-9a86-58aaa9df217b.png'
-              alt='Egg'
-            />
-          ),
-          title: 'Egg',
-          url: 'https://eggjs.org',
-          description: <FormattedMessage id="企业级 Node 开发框架" />,
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src='https://gw.alipayobjects.com/zos/rmsportal/DMDOlAUhmktLyEODCMBR.ico'
-              alt='kitchen'
-            />
-          ),
-          title: 'Kitchen',
-          description: <FormattedMessage id="Sketch 工具集" />,
-          url: 'https://kitchen.alipay.com',
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src='https://mdn.alipayobjects.com/huamei_j9rjmc/afts/img/A*3ittT5OEo2gAAAAAAAAAAAAADvGmAQ/original'
-              width={16}
-              height={16}
-              alt="Galacean"
-            />
-          ),
-          title: "Galacean",
-          description: "互动图形解决方案",
-          url: 'https://galacean.antgroup.com/',
           openExternal: true,
         },
         {

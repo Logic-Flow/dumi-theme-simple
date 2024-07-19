@@ -1,13 +1,12 @@
 // import { navigate } from 'gatsby';
 import React, { useState, useEffect, useMemo } from 'react';
 import { useMedia } from 'react-use';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import cx from 'classnames';
 import { useSiteData, useLocale, FormattedMessage } from 'dumi';
 import {
   GithubOutlined,
   MenuOutlined,
-  CaretDownFilled,
   DownOutlined,
   WechatOutlined,
   LinkOutlined,
@@ -16,7 +15,6 @@ import {
 import { Alert, Modal, Button, Popover, Menu, Dropdown, Select } from 'antd';
 import { get, map, size } from 'lodash-es';
 import { Search } from './Search';
-import { Products } from './Products';
 import { Navs, INav } from './Navs';
 import { findVersion, getLangUrl } from './utils';
 import { ic } from '../hooks';
@@ -68,12 +66,9 @@ export type HeaderProps = {
   transparent?: boolean;
   /** 是否首页模式 */
   isHomePage?: boolean;
-  /** 是否是AntV官网 */
-  isAntVSite?: boolean;
-  /** AntV root 域名，直接用主题的可不传 */
+  /** 项目 root 域名 */
   rootDomain?: string;
-  /** 是否显示 AntV 产品卡片 */
-  showAntVProductsCard?: boolean;
+
   /**
    * 当前版本
    */
@@ -87,7 +82,7 @@ export type HeaderProps = {
   }>;
   /** 头部搜索框配置 */
   searchOptions?: {
-    docsearchOptions: {
+    docSearchOptions: {
       versionV3: boolean;
       apiKey: string;
       indexName: string;
@@ -114,11 +109,10 @@ const ANNOUNCEMENT_LOCALSTORAGE_ID = 'ANNOUNCEMENT_LOCALSTORAGE_ID';
  * 头部菜单
  */
 const HeaderComponent: React.FC<HeaderProps> = ({
-  subTitle = '',
+  // subTitle = '',
   navs = [],
   showSearch = true,
   showGithubCorner = true,
-  showAntVProductsCard = true,
   showLanguageSwitcher = true,
   logo,
   onLanguageChange,
@@ -126,24 +120,26 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   showWxQrcode = true,
   siteUrl,
   githubUrl = 'https://github.com/antvis',
-  defaultLanguage,
+  // defaultLanguage,
   transparent,
-  isHomePage,
-  isAntVSite = false,
-  rootDomain = '',
+
+  // rootDomain = '',
   version,
   versions,
   internalSite,
   ecosystems,
   announcement,
 }) => {
-  const isAntVHome = isAntVSite && isHomePage; // 是否为AntV官网首页
-
   const [bannerVisible, setBannerVisible] = useState(false);
 
   const showChinaMirror: boolean = !!internalSite;
   const chinaMirrorUrl: string = get(internalSite, 'url');
   const [chinaMirrorHintVisible, updateChinaMirrorHintVisible] = useState(false);
+
+  const locale = useLocale();
+  const nav = useNavigate();
+
+  const [lang, setLang] = useState(locale.id);
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (
@@ -159,11 +155,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({
     };
   });
 
-  const locale = useLocale();
-  const nav = useNavigate();
-
-  const [lang, setLang] = useState(locale.id);
-
   const announcementTitle = useMemo(() => get(announcement, ['title', lang]), [announcement, lang]);
   const announcementLinkTitle = useMemo(() => get(announcement, ['link', 'text', lang]), [announcement, lang]);
 
@@ -176,39 +167,13 @@ const HeaderComponent: React.FC<HeaderProps> = ({
     setBannerVisible(false);
   }
 
-  const [productMenuVisible, setProductMenuVisible] = useState(false);
-  let productMenuHovering = false;
-  const onProductMouseEnter = (e: React.MouseEvent) => {
-    productMenuHovering = true;
-    e.persist();
-    setTimeout(() => {
-      if (e.target instanceof Element && e.target.matches(':hover')) {
-        setProductMenuVisible(true);
-      }
-    }, 200);
-  };
-  const onProductMouseLeave = (e: React.MouseEvent) => {
-    e.persist();
-    productMenuHovering = false;
-    setTimeout(() => {
-      if (productMenuHovering) {
-        return;
-      }
-      setProductMenuVisible(false);
-    }, 200);
-  };
-  const onToggleProductMenuVisible = () => {
-    setProductMenuVisible(!productMenuVisible);
-  };
-
   const [popupMenuVisible, setPopupMenuVisible] = useState(false);
   const onTogglePopupMenuVisible = () => {
     setPopupMenuVisible(!popupMenuVisible);
   };
 
-  const { img, link } = {
-    img: <img src='https://mdn.alipayobjects.com/huamei_qa8qxu/afts/img/A*A-lcQbVTpjwAAAAAAAAAAAAADmJ7AQ/original' alt='logo' />,
-    link: '',
+  const { img } = {
+    img: <img src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/logo-horizontal-blue.png" alt="logo" />,
     ...logo,
   };
 
@@ -238,16 +203,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({
       onClick={onTogglePopupMenuVisible}
     />
   ) : null;
-
-  const productItemProps = isWide
-    ? {
-      onMouseEnter: onProductMouseEnter,
-      onMouseLeave: onProductMouseLeave,
-      onClick: onToggleProductMenuVisible,
-    }
-    : {
-      onClick: onToggleProductMenuVisible,
-    };
 
   const menu = (
     <ul
@@ -344,7 +299,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
               }}
             >
               {ic(get(internalSite, 'name'))}
-              {!isAntVHome && <LinkOutlined style={{ marginLeft: '6px' }} />}
+              <LinkOutlined style={{ marginLeft: '6px' }} />
             </a>
           </li>
         </Popover>
@@ -391,40 +346,6 @@ const HeaderComponent: React.FC<HeaderProps> = ({
       )}
 
       {
-        /** 产品列表 */
-        showAntVProductsCard &&
-        <li {...productItemProps}>
-          <a>
-            {<FormattedMessage id="所有产品" />}
-            {!isAntVHome ? (
-              <img
-                src="https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png"
-                alt="antv logo arrow"
-                className={cx(styles.arrow, {
-                  [styles.open]: productMenuVisible,
-                })}
-                style={{ marginLeft: '6px' }}
-              />
-            ) : (
-              <CaretDownFilled
-                style={{ top: '1px', color: '#fff' }}
-                className={cx(styles.arrow, {
-                  [styles.open]: productMenuVisible,
-                })}
-              />
-            )}
-          </a>
-          <Products
-            className={styles.productsMenu}
-            bannerVisible={bannerVisible}
-            show={productMenuVisible}
-            rootDomain={rootDomain}
-            language={defaultLanguage}
-          />
-        </li>
-      }
-
-      {
         /** 版本列表 */
         versions &&
         <li>
@@ -466,13 +387,13 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                     if (key === lang) {
                       return;
                     }
-                    setLang(key)
+                    setLang(key);
                     if (onLanguageChange) {
                       onLanguageChange(key.toString());
                       return;
                     }
                     const newUrl = getLangUrl(window.location.href, key);
-                    nav(newUrl.replace(window.location.origin, ''))
+                    nav(newUrl.replace(window.location.origin, ''));
                   }}
                 >
                   <Menu.Item key="en">
@@ -501,7 +422,11 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                 className="ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
               >
-                <svg className={styles.translation} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" /></svg>
+                <svg className={styles.translation} xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                     viewBox="0 0 24 24">
+                  <path
+                    d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
+                </svg>
               </a>
             </Dropdown>
           </li>
@@ -514,9 +439,11 @@ const HeaderComponent: React.FC<HeaderProps> = ({
         <li className={cx(styles.navIcon, styles.wxQrcode)}>
           <Popover
             content={
-              <img width="100%" height="100%" src="https://gw.alipayobjects.com/zos/antfincdn/ZKlx96dsfs/qrcode_for_gh_f52d8b6aa591_258.jpg" alt="wx-qrcode" />
+              <img width="100%" height="100%"
+                   src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/qrcode-white.jpg"
+                   alt="wx-qrcode" />
             }
-            title="微信扫一扫关注"
+            title="微信扫一扫添加"
             overlayClassName="wx-qrcode-popover"
             overlayStyle={{ width: 128, height: 128 }}
             overlayInnerStyle={{ padding: 2 }}
@@ -544,10 +471,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   return (
     <header
       className={cx(styles.header, {
-        [styles.transparent]: !!transparent && !productMenuVisible,
-        [styles.isHomePage]: !!isHomePage && !isAntVHome,
-        [styles.lightTheme]: !!isAntVHome && !productMenuVisible && isWide,
-        [styles.isAntVHome]: !!isAntVHome,
+        [styles.transparent]: !!transparent,
+        // [styles.lightTheme]: isWide,
         [styles.fixed]: popupMenuVisible,
       })}
     >
@@ -559,7 +484,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
             <div className={styles.topAlert}>
               {announcement.icon && <img src={announcement.icon} />}
               <div>{announcementTitle}</div>
-              {announcementLinkTitle && <a href={announcement.link.url} >{announcementLinkTitle}</a>}
+              {announcementLinkTitle && <a href={announcement.link.url}>{announcementLinkTitle}</a>}
             </div>
           }
           type="info"
@@ -574,17 +499,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           <h1>
             <a href={siteUrl[lang] ? siteUrl[lang] : siteUrl}>{img}</a>
           </h1>
-          {!isAntVHome && subTitle && (
-            <>
-              <span className={styles.divider} />
-              <h2 className={styles.subProduceName}>
-                <a href={(window.location.pathname.startsWith('/en') ? '/en' : '/')}>{subTitle}</a>
-              </h2>
-            </>
-          )}
           {
-            showSearch && !isAntVHome &&
-            <Search />
+            showSearch && <Search />
           }
         </div>
         <nav className={styles.nav}>
@@ -599,13 +515,29 @@ const HeaderComponent: React.FC<HeaderProps> = ({
 export const Header: React.FC<Partial<HeaderProps>> = (props) => {
   const { themeConfig } = useSiteData();
   const {
-    title, siteUrl, githubUrl, isAntVSite, subTitleHref, internalSite,
-    showSearch, showGithubCorner, showGithubStars, showLanguageSwitcher, showWxQrcode, defaultLanguage, showAntVProductsCard,
-    version, versions, ecosystems, navs, docsearchOptions, announcement
+    title,
+    siteUrl,
+    githubUrl,
+    isAntVSite,
+    subTitleHref,
+    internalSite,
+    showSearch,
+    showGithubCorner,
+    showGithubStars,
+    showLanguageSwitcher,
+    showWxQrcode,
+    defaultLanguage,
+    showAntVProductsCard,
+    version,
+    versions,
+    ecosystems,
+    navs,
+    docSearchOptions,
+    announcement,
   } = themeConfig;
   const searchOptions = {
-    docsearchOptions
-  }
+    docSearchOptions,
+  };
 
   const locale = useLocale();
   const path = window.location.pathname;
@@ -621,12 +553,22 @@ export const Header: React.FC<Partial<HeaderProps>> = (props) => {
     isAntVSite,
     siteUrl,
     internalSite,
-    showSearch, showGithubCorner, showGithubStars, showLanguageSwitcher, showWxQrcode, defaultLanguage, showAntVProductsCard,
-    version, versions, ecosystems, navs, searchOptions,
+    showSearch,
+    showGithubCorner,
+    showGithubStars,
+    showLanguageSwitcher,
+    showWxQrcode,
+    defaultLanguage,
+    showAntVProductsCard,
+    version,
+    versions,
+    ecosystems,
+    navs,
+    searchOptions,
     isHomePage,
     transparent: isHomePage && isAntVSite,
     announcement,
-  }
+  };
 
   return <HeaderComponent {...Object.assign({}, headerProps, props)} />;
-}
+};

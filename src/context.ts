@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 import { ExampleTopic } from './types';
 
-export type IThemeAntVContext = {
+export type ILogicFlowThemeContext = {
   exampleTopics?: ExampleTopic[];
 }
 
-export const ThemeAntVContext = createContext<IThemeAntVContext>({});
+export const LogicFlowThemeContext = createContext<ILogicFlowThemeContext>({});

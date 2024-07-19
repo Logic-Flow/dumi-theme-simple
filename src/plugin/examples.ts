@@ -11,7 +11,6 @@ const examplesBaseDir = path.resolve(process.cwd(), 'examples');
  *
  * @param {string} exampleDir 案例路径
  * @returns {Demo[]} DEMO 列表
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 const getExampleDemos = (exampleDir: string) => {
   const demoMetaJSON = fs
@@ -45,7 +44,6 @@ const getExampleDemos = (exampleDir: string) => {
  * @param {string} topicPath 案例主题路径
  * @param {boolean} showAPIDoc 是否在示例页面显示 API 文档
  * @returns {Example[]} 案例列表
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 const getTopicExamples = (topicPath: string, showAPIDoc: boolean) => {
   const examplePaths = glob
@@ -94,7 +92,6 @@ const getTopicExamples = (topicPath: string, showAPIDoc: boolean) => {
  * 获取案例页面的所有主题
  *
  * @returns {ExampleTopic[]} 案例主题列表
- * @author YuZhanglong <loveyzl1123@gmail.com>
  */
 export const getExamplesPageTopics = (
   exampleTopics: ExampleTopic[],
