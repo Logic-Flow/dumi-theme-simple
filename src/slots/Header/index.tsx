@@ -12,7 +12,7 @@ import {
   LinkOutlined,
   CheckOutlined,
 } from '@ant-design/icons';
-import { Alert, Modal, Button, Popover, Menu, Dropdown, Select } from 'antd';
+import { Alert, Modal, Button, Popover, Menu, Dropdown, Select, Space } from 'antd';
 import { get, map, size } from 'lodash-es';
 import { Search } from './Search';
 import { Navs, INav } from './Navs';
@@ -109,27 +109,27 @@ const ANNOUNCEMENT_LOCALSTORAGE_ID = 'ANNOUNCEMENT_LOCALSTORAGE_ID';
  * 头部菜单
  */
 const HeaderComponent: React.FC<HeaderProps> = ({
-  // subTitle = '',
-  navs = [],
-  showSearch = true,
-  showGithubCorner = true,
-  showLanguageSwitcher = true,
-  logo,
-  onLanguageChange,
-  // 默认就使用 AntV 的公众号
-  showWxQrcode = true,
-  siteUrl,
-  githubUrl = 'https://github.com/antvis',
-  // defaultLanguage,
-  transparent,
+                                                  // subTitle = '',
+                                                  navs = [],
+                                                  showSearch = true,
+                                                  showGithubCorner = true,
+                                                  showLanguageSwitcher = true,
+                                                  logo,
+                                                  onLanguageChange,
+                                                  // 默认就使用 AntV 的公众号
+                                                  showWxQrcode = true,
+                                                  siteUrl,
+                                                  githubUrl = 'https://github.com/antvis',
+                                                  // defaultLanguage,
+                                                  transparent,
 
-  // rootDomain = '',
-  version,
-  versions,
-  internalSite,
-  ecosystems,
-  announcement,
-}) => {
+                                                  // rootDomain = '',
+                                                  version,
+                                                  versions,
+                                                  internalSite,
+                                                  ecosystems,
+                                                  announcement,
+                                                }) => {
   const [bannerVisible, setBannerVisible] = useState(false);
 
   const showChinaMirror: boolean = !!internalSite;
@@ -345,6 +345,13 @@ const HeaderComponent: React.FC<HeaderProps> = ({
         </Modal>
       )}
 
+    </ul>
+  );
+
+  const menuAction = (
+    <ul
+      className={cx(styles.menu)}
+    >
       {
         /** 版本列表 */
         versions &&
@@ -496,16 +503,21 @@ const HeaderComponent: React.FC<HeaderProps> = ({
       }
       <div className={styles.container}>
         <div className={styles.left}>
-          <h1>
-            <a href={siteUrl[lang] ? siteUrl[lang] : siteUrl}>{img}</a>
-          </h1>
+          <Space size="large">
+            <h1>
+              <a href={siteUrl[lang] ? siteUrl[lang] : siteUrl}>{img}</a>
+            </h1>
+            <nav className={styles.nav}>
+              {menu}
+              {menuIcon}
+            </nav>
+          </Space>
+        </div>
+        <nav className={styles.nav}>
           {
             showSearch && <Search />
           }
-        </div>
-        <nav className={styles.nav}>
-          {menu}
-          {menuIcon}
+          {menuAction}
         </nav>
       </div>
     </header>

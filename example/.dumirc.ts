@@ -207,12 +207,12 @@ export default defineConfig({
     /** 首页技术栈介绍 */
     detail: {
       engine: {
-        zh: 'dumi-theme-antv',
-        en: 'dumi-theme-antv',
+        zh: 'dumi-theme-simple',
+        en: 'dumi-theme-simple',
       },
       title: {
-        zh: 'dumi-theme-antv·主题包',
-        en: 'dumi-theme-antv·Theme Pack',
+        zh: 'dumi-theme-simple·主题包',
+        en: 'dumi-theme-simple·Theme Pack',
       },
       description: {
         zh: '基于 dumi2 封装，提供灵活多变的 slots 插槽，抽取大量配置，一秒搭建 AntV 的各个技术栈官网。',

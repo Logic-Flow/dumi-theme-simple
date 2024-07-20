@@ -35,36 +35,36 @@ export default (api: IApi) => {
 
   const pages = [
     {
-      id: 'dumi-theme-antv-homepage',
+      id: 'dumi-theme-simple-homepage',
       absPath: '/',
     },
     {
-      id: 'dumi-theme-antv-en-homepage',
+      id: 'dumi-theme-simple-en-homepage',
       absPath: '/en/',
     },
     {
-      id: 'dumi-theme-antv-zh-homepage',
+      id: 'dumi-theme-simple-zh-homepage',
       absPath: '/zh/',
     },
     // Examples gallery page.
     {
-      id: 'dumi-theme-antv-example-list-zh',
+      id: 'dumi-theme-simple-example-list-zh',
       absPath: '/examples',
       file: `${PAGES_DIR}/Examples`,
     },
     {
-      id: 'dumi-theme-antv-example-list-lang',
+      id: 'dumi-theme-simple-example-list-lang',
       absPath: '/:language/examples',
       file: `${PAGES_DIR}/Examples`,
     },
     // single example preview page.
     {
-      id: 'dumi-theme-antv-single-example-zh',
+      id: 'dumi-theme-simple-single-example-zh',
       absPath: '/examples/:topic/:example',
       file: `${PAGES_DIR}/Example`,
     },
     {
-      id: 'dumi-theme-antv-single-example-lang',
+      id: 'dumi-theme-simple-single-example-lang',
       absPath: '/:language/examples/:topic/:example',
       file: `${PAGES_DIR}/Example`,
     },
