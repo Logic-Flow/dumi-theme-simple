@@ -193,7 +193,5 @@ export const Footer: React.FC<FooterProps> = (props) => {
       }
       {...omit(restProps, ['githubUrl'])}
     />
-  ) : (
-    <></>
-  );
+  ) : null;
 };
