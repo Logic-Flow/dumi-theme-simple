@@ -1,4 +1,5 @@
 import React from 'react';
+import { isArray, size, get } from 'lodash-es';
 import { useLocale, useSiteData, FormattedMessage } from 'dumi';
 import { SEO } from '../../slots/SEO';
 import { Header } from '../../slots/Header';
@@ -7,7 +8,6 @@ import { Features } from '../../slots/Features';
 import { Cases } from '../../slots/Cases';
 import { Companies } from '../../slots/Companies';
 import { Footer } from '../../slots/Footer';
-import { isArray, size, get } from 'lodash-es';
 
 /**
  * Index 路由下的入口

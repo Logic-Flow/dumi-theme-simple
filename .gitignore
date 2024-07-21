@@ -12,6 +12,5 @@
 .DS_Store
 .idea
 
-pnpm-lock.yaml
 yarn.lock
 package-lock.json

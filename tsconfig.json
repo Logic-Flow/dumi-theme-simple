@@ -4,6 +4,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
+    "downlevelIteration": true,
     "jsx": "react",
     "skipLibCheck": true,
     "baseUrl": "./",
