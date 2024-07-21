@@ -19,6 +19,7 @@ export default defineConfig({
     title: 'dumi-theme-simple',
     description: '基于 dumi2 的 LogicFlow 官网主题包',
     defaultLanguage: 'zh', // 默认语言
+    footer: 'Copyright © 2024 | Powered by LogicFlow Team', // footer文案
     footerTheme: 'light',
     siteUrl: '/', // 官网地址
     githubUrl: repository.url, // GitHub 地址

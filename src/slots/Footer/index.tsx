@@ -1,15 +1,14 @@
-import React from 'react';
-import { default as RCFooter, FooterProps as RcFooterProps } from 'rc-footer';
 import {
   GithubOutlined,
+  QuestionCircleOutlined,
   WeiboOutlined,
   ZhihuOutlined,
-  QuestionCircleOutlined,
 } from '@ant-design/icons';
-import cx from 'classnames';
+import { default as classnames, default as cx } from 'classnames';
+import { FormattedMessage, useLocale, useSiteData } from 'dumi';
 import { omit } from 'lodash-es';
-import classnames from 'classnames';
-import { useLocale, FormattedMessage, useSiteData } from 'dumi';
+import { default as RCFooter, FooterProps as RcFooterProps } from 'rc-footer';
+import React from 'react';
 
 import 'rc-footer/assets/index.less';
 import styles from './index.module.less';
@@ -32,7 +31,6 @@ export const Footer: React.FC<FooterProps> = (props) => {
   const {
     columns,
     bottom,
-    language,
     isDynamicFooter,
     rootDomain = '',
     className,
@@ -41,7 +39,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
   const { themeConfig } = useSiteData();
   const locale = useLocale();
   const lang = locale.id;
-  const { footerTheme = 'dark' } = themeConfig;
+  const { footerTheme = 'dark', footer } = themeConfig;
   const { theme = footerTheme } = restProps;
 
   const getColumns = () => {
@@ -74,8 +72,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
         {
           icon: (
             <img
-              src='https://gw.alipayobjects.com/zos/rmsportal/mZBWtboYbnMkTBaRIuWQ.png'
-              alt='seeconf'
+              src="https://gw.alipayobjects.com/zos/rmsportal/mZBWtboYbnMkTBaRIuWQ.png"
+              alt="seeconf"
             />
           ),
           title: 'SEE Conf',
@@ -110,8 +108,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
         {
           icon: (
             <img
-              src='https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg'
-              alt='Ant Design'
+              src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+              alt="Ant Design"
             />
           ),
           title: 'Ant Design',
@@ -122,8 +120,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
         {
           icon: (
             <img
-              src='https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg'
-              alt='xtech'
+              src="https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg"
+              alt="xtech"
             />
           ),
           title: <FormattedMessage id="蚂蚁体验科技" />,
@@ -136,7 +134,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
     return [col1, col2, col3, more];
   };
 
-  return (
+  return footer ? (
     <RCFooter
       maxColumnsPerRow={5}
       theme={theme}
@@ -153,45 +151,49 @@ export const Footer: React.FC<FooterProps> = (props) => {
                 [styles.light]: theme === 'light',
               })}
             >
-              {
-                theme === 'light' ?
-                  `© Copyright ${new Date().getFullYear()} Ant Group Co., Ltd..备案号：京ICP备15032932号-38` :
-                  <>
-                    <div>
-                      <a
-                        href='https://weibo.com/antv2017'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        <WeiboOutlined />
-                      </a>
-                      <a
-                        href='https://zhuanlan.zhihu.com/aiux-antv'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        <ZhihuOutlined />
-                      </a>
-                      <a
-                        href='https://github.com/antvis'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        <GithubOutlined />
-                      </a>
-                      <a href={`${rootDomain}/${lang}/about`}>{<FormattedMessage id="关于我们" />}</a>
-                    </div>
-                    <div>
-                      © {new Date().getFullYear()} Made with ❤ by{' '}
-                      <a href='https://xtech.antfin.com/'>AntV</a>
-                    </div>
-                  </>
-              }
+              {theme === 'light' ? (
+                footer
+              ) : (
+                <>
+                  <div>
+                    <a
+                      href="https://weibo.com/antv2017"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <WeiboOutlined />
+                    </a>
+                    <a
+                      href="https://zhuanlan.zhihu.com/aiux-antv"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <ZhihuOutlined />
+                    </a>
+                    <a
+                      href="https://github.com/antvis"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GithubOutlined />
+                    </a>
+                    <a href={`${rootDomain}/${lang}/about`}>
+                      {<FormattedMessage id="关于我们" />}
+                    </a>
+                  </div>
+                  <div>
+                    © {new Date().getFullYear()} Made with ❤ by{' '}
+                    <a href="https://xtech.antfin.com/">AntV</a>
+                  </div>
+                </>
+              )}
             </div>
           </>
         )
       }
       {...omit(restProps, ['githubUrl'])}
     />
+  ) : (
+    <></>
   );
 };
