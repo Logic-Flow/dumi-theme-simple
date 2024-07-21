@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
-import { size } from 'lodash-es';
+import { map, size } from 'lodash-es';
 import { Link, useLocale } from 'dumi';
-import { Dropdown, Menu } from 'antd';
+import { Dropdown } from 'antd';
 import { DownOutlined, LinkOutlined } from '@ant-design/icons';
 import { getNavCategory } from './utils';
 import styles from './index.module.less';
@@ -40,8 +40,8 @@ export const Navs: React.FC<NavProps> = ({ navs, path }) => {
     <>
       {navs.map((nav: INav) => {
         const title = nav.title[locale.id];
-        let href = ''
-        let className = ''
+        let href = '';
+        let className = '';
         if (nav.slug) {
           href = nav.slug.startsWith('http')
             ? nav.slug
@@ -55,9 +55,10 @@ export const Navs: React.FC<NavProps> = ({ navs, path }) => {
           }
 
           className = cx('header-menu-item-active', {
-            [styles.activeItem]: getNavCategory(path) === getNavCategory(href)
+            [styles.activeItem]: getNavCategory(path) === getNavCategory(href),
           });
         }
+
         return (
           size(nav.dropdownItems) ?
             (
@@ -65,25 +66,24 @@ export const Navs: React.FC<NavProps> = ({ navs, path }) => {
                 <Dropdown
                   className={styles.ecoSystems}
                   placement="bottom"
-                  overlay={
-                    <Menu>
-                      {nav.dropdownItems.map(({ name, url, target }) => {
-                        const displayName = name[locale.id];
-                        return (
-                          <Menu.Item key={url}>
-                            {target === '_blank' || url.startsWith('http') ? (
-                              <a href={url} target="_blank" rel="noreferrer">
-                                {displayName}
-                                <LinkOutlined />
-                              </a>
-                            ) : (
-                              <Link to={url}>{displayName}</Link>
-                            )}
-                          </Menu.Item>
-                        );
-                      })}
-                    </Menu>
-                  }
+                  menu={{
+                    items: map(nav.dropdownItems, ({ name, url, target }) => {
+                      const displayName = name[locale.id];
+                      return {
+                        key: url,
+                        label: (
+                          target === '_blank' || url.startsWith('http') ? (
+                            <a href={url} target="_blank" rel="noreferrer">
+                              {displayName}
+                              <LinkOutlined />
+                            </a>
+                          ) : (
+                            <Link to={url}>{displayName}</Link>
+                          )
+                        ),
+                      };
+                    }),
+                  }}
                 >
                   <span>
                     {title}
@@ -94,17 +94,17 @@ export const Navs: React.FC<NavProps> = ({ navs, path }) => {
             )
             :
             (<li key={title} className={className}>
-              {nav.target === '_blank' || href.startsWith('http') ? (
-                <a href={href} target='_blank' rel='noreferrer'>
-                  {title}
-                  <LinkOutlined />
-                </a>
-              ) : (
-                <Link to={href}>{title}</Link>
-              )}
-            </li>
+                {nav.target === '_blank' || href.startsWith('http') ? (
+                  <a href={href} target="_blank" rel="noreferrer">
+                    {title}
+                    <LinkOutlined />
+                  </a>
+                ) : (
+                  <Link to={href}>{title}</Link>
+                )}
+              </li>
             )
-        )
+        );
       })}
     </>
   );

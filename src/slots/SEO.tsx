@@ -73,8 +73,8 @@ export const SEO: React.FC<SEOProps> = ({
   );
 };
 
-SEO.defaultProps = {
-  lang: `zh`,
-  meta: [],
-  description: ``,
-};
+// SEO.defaultProps = {
+//   lang: `zh`,
+//   meta: [],
+//   description: ``,
+// };

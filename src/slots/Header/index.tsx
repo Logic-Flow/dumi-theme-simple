@@ -12,7 +12,7 @@ import {
   LinkOutlined,
   CheckOutlined,
 } from '@ant-design/icons';
-import { Alert, Modal, Button, Popover, Menu, Dropdown, Select, Space } from 'antd';
+import { Alert, Modal, Button, Popover, Dropdown, Select, Space } from 'antd';
 import { get, map, size } from 'lodash-es';
 import { Search } from './Search';
 import { Navs, INav } from './Navs';
@@ -223,17 +223,16 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           <li>
             <Dropdown
               className={styles.ecoSystems}
-              overlay={
-                <Menu>
-                  {map(ecosystems, ({ url, name: ecosystemName }) => (
-                    <Menu.Item key={ecosystemName?.[lang]}>
-                      <a target="_blank" rel="noreferrer" href={url}>
-                        {ecosystemName?.[lang]} <LinkOutlined />
-                      </a>
-                    </Menu.Item>
-                  ))}
-                </Menu>
-              }
+              menu={{
+                items: map(ecosystems, ({ url, name: ecosystemName }) => (
+                  {
+                    key: ecosystemName?.[lang],
+                    label: <a target="_blank" rel="noreferrer" href={url}>
+                      {ecosystemName?.[lang]} <LinkOutlined />
+                    </a>,
+                  }
+                )),
+              }}
             >
               <span>
                 {<FormattedMessage id="周边生态" />}
@@ -284,7 +283,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
               </div>
             </div>
           }
-          visible={chinaMirrorHintVisible}
+          open={chinaMirrorHintVisible}
           placement="bottomRight"
           align={{
             offset: [-12, -16],
@@ -307,7 +306,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
 
       {showChinaMirror && !isWide && (
         <Modal
-          visible={chinaMirrorHintVisible}
+          open={chinaMirrorHintVisible}
           cancelText="不再提醒"
           okText="立即前往"
           onCancel={() => {
@@ -386,43 +385,48 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           <li className={cx(styles.navIcon, styles.languageSwitcher)}>
             <Dropdown
               placement="bottomRight"
-              overlay={
-                <Menu
-                  defaultSelectedKeys={[lang]}
-                  selectable
-                  onSelect={({ key }) => {
-                    if (key === lang) {
-                      return;
-                    }
-                    setLang(key);
-                    if (onLanguageChange) {
-                      onLanguageChange(key.toString());
-                      return;
-                    }
-                    const newUrl = getLangUrl(window.location.href, key);
-                    nav(newUrl.replace(window.location.origin, ''));
-                  }}
-                >
-                  <Menu.Item key="en">
-                    <CheckOutlined
-                      style={{
-                        visibility: lang === 'en' ? 'visible' : 'hidden',
-                        color: '#52c41a',
-                      }}
-                    />
-                    English
-                  </Menu.Item>
-                  <Menu.Item key="zh">
-                    <CheckOutlined
-                      style={{
-                        visibility: lang === 'zh' ? 'visible' : 'hidden',
-                        color: '#52c41a',
-                      }}
-                    />
+              menu={{
+                items: [
+                  {
+                  key: 'en',
+                  label: (
+                    <span>
+                      <CheckOutlined
+                        style={{
+                          visibility: lang === 'en' ? 'visible' : 'hidden',
+                          color: '#52c41a',
+                        }}
+                      />
+                      English
+                    </span>
+                  ),
+                },{
+                  key: 'zh',
+                  label: (
+                    <span>
+                      <CheckOutlined
+                        style={{
+                          visibility: lang === 'zh' ? 'visible' : 'hidden',
+                          color: '#52c41a',
+                        }}
+                      />
                     简体中文
-                  </Menu.Item>
-                </Menu>
-              }
+                    </span>
+                  ),
+                },
+                ],
+                onClick: ({ key }) => {
+                  if (key === lang) return
+
+                  setLang(key)
+                  if (onLanguageChange) {
+                    onLanguageChange(key.toString());
+                    return;
+                  }
+                  const newUrl = getLangUrl(window.location.href, key);
+                  nav(newUrl.replace(window.location.origin, ''));
+                }
+              }}
               className={styles.translation}
             >
               <a
