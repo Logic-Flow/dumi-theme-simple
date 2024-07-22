@@ -70,6 +70,14 @@ export interface Demo extends TreeNode {
    * 目标主题
    */
   targetTopic?: ExampleTopic;
+  /**
+   * 预览代码地址是否外部
+   */
+  isExternal?: boolean;
+  /**
+   * 预览地址
+   */
+  previewUrl?: string;
 }
 
 /** 示例 */

@@ -17,31 +17,46 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
   const locale = useLocale();
 
   const renderCardInternal = () => {
-    const img = demo.screenshot ||
+    const img =
+      demo.screenshot ||
       'https://gw.alipayobjects.com/os/s/prod/antv/assets/image/screenshot-placeholder-b8e70.png';
     return (
       <>
-        <div className={cx('demo-card-screenshot', styles.screenshot)} style={{
-          backgroundImage: `url("${img}")`,
-        }} />
+        <div
+          className={cx('demo-card-screenshot', styles.screenshot)}
+          style={{
+            backgroundImage: `url("${img}")`,
+          }}
+        />
       </>
     );
   };
 
-  return (
-    <Link
-      className={styles.galleryCardLink}
-      to={`${locale.id == 'zh' ? '' : '/en'}/examples/${topicId}/${exampleId}/#${demo.id}`}
-    >
+  return demo.isExternal ? (
+    <a className={styles.galleryCardLink} href={demo.previewUrl}>
       {demo.isNew ? (
-        <Badge.Ribbon
-          text='new'
-          className={styles.customRibbon}
-        >
+        <Badge.Ribbon text="new" className={styles.customRibbon}>
           {renderCardInternal()}
         </Badge.Ribbon>
-      ) : renderCardInternal()
-      }
+      ) : (
+        renderCardInternal()
+      )}
+      <h4>{ic(demo.title)}</h4>
+    </a>
+  ) : (
+    <Link
+      className={styles.galleryCardLink}
+      to={`${
+        locale.id === 'zh' ? '' : '/en'
+      }/examples/${topicId}/${exampleId}/#${demo.id}`}
+    >
+      {demo.isNew ? (
+        <Badge.Ribbon text="new" className={styles.customRibbon}>
+          {renderCardInternal()}
+        </Badge.Ribbon>
+      ) : (
+        renderCardInternal()
+      )}
       <h4>{ic(demo.title)}</h4>
     </Link>
   );

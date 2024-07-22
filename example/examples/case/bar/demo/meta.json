@@ -5,6 +5,8 @@
   },
   "demos": [
     {
+      "isExternal": true,
+      "previewUrl": "https://examples.logic-flow.cn/demo/dist/examples/#/usage/bpmn?from=doc",
       "filename": "bar1.ts",
       "title": {
         "zh": "某产品行业销量分布 Top10",
@@ -13,6 +15,8 @@
       "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*62ClRKVbiIYAAAAAAAAAAABkARQnAQ"
     },
     {
+      "isExternal": true,
+      "previewUrl": "https://examples.logic-flow.cn/demo/dist/examples/#/usage/bpmn?from=doc",
       "filename": "bar2.ts",
       "title": {
         "zh": "产品类别销售额对比",
