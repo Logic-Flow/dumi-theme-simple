@@ -167,7 +167,7 @@ export default defineConfig({
           zh: '场景案例',
           en: 'Show Case',
         },
-        icon: 'gallery',
+        icon: 'case',
       },
     ],
     playground: {
