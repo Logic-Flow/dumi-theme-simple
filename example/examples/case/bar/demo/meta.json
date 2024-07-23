@@ -11,8 +11,7 @@
       "title": {
         "zh": "某产品行业销量分布 Top10",
         "en": "Top 10 sales distribution"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*62ClRKVbiIYAAAAAAAAAAABkARQnAQ"
+      }
     },
     {
       "isExternal": true,
@@ -29,8 +28,7 @@
       "title": {
         "zh": "产品类别销售额对比",
         "en": "Product category sales comparison"
-      },
-      "screenshot": "https://gw.alipayobjects.com/mdn/rms_f5c722/afts/img/A*uM-VQIO9obEAAAAAAAAAAABkARQnAQ"
+      }
     }
   ]
 }
