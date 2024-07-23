@@ -19,7 +19,7 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
   const renderCardInternal = () => {
     const img =
       demo.screenshot ||
-      'https://gw.alipayobjects.com/os/s/prod/antv/assets/image/screenshot-placeholder-b8e70.png';
+      'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/screenshot-placeholder-white.png';
     return (
       <>
         <div
@@ -33,7 +33,12 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
   };
 
   return demo.isExternal ? (
-    <a className={styles.galleryCardLink} href={demo.previewUrl}>
+    <a
+      className={styles.galleryCardLink}
+      href={demo.previewUrl}
+      target='_blank'
+      rel="noreferrer"
+    >
       {demo.isNew ? (
         <Badge.Ribbon text="new" className={styles.customRibbon}>
           {renderCardInternal()}
