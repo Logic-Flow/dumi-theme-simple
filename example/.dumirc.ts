@@ -360,7 +360,7 @@ export default defineConfig({
         img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TgV-RZDODJIAAAAAAAAAAABkARQnAQ',
       },
     ],
-    // 代码编辑器设置
+    // example代码编辑器设置
     editor: {
       size: 0.4, // 代码区占比
       playgroundSize: 0.38, // 文档中的代码区占比
