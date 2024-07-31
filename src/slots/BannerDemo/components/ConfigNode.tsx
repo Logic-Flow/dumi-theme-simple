@@ -83,7 +83,6 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
   const onChange = (key, value) => {
     setValue(key, value);
   };
-  console.log('isSilentMode', isSilentMode);
   return (
     <div className={styles.configCard}>
       <Space direction="vertical" size="middle">
@@ -185,7 +184,6 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
                   onChange={(e: any) => {
                     e.stopPropagation();
                     const { value } = e.target;
-                    console.log('value', item.key, value);
                     onChange(item.key, value);
                   }}
                 />

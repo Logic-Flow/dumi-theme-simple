@@ -72,14 +72,14 @@ const ConfigComponent: FC<ReactNodeProps> = (props) => {
               'config-node',
               'github-node',
               'advantage-node',
-            ].includes(node.modelType)
+            ].includes(node.type)
           )
             return;
           if (!node.properties.textStyle) {
             node.properties.textStyle = {};
           }
           node.setProperty('textStyle', {
-            ...(node.properties.style as any),
+            ...(node.properties.textStyle as any),
             color: value,
           });
         });
@@ -129,7 +129,6 @@ const ConfigComponent: FC<ReactNodeProps> = (props) => {
           }
           edge.setProperty('style', {
             ...(edge.properties.style as any),
-            fill: value,
             stroke: value,
           });
         });
@@ -148,7 +147,6 @@ const ConfigComponent: FC<ReactNodeProps> = (props) => {
         const updateConfig = {};
         updateConfig[key] = value;
         editConfigModel.updateEditConfig(updateConfig);
-        console.log('key', key, value, updateConfig, editConfigModel);
         break;
       }
     }
