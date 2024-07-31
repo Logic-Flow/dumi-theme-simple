@@ -9,7 +9,13 @@ import { IntroNode } from './IntroNode';
 import { AdvantageNode } from './AdvantageNode';
 import { ic } from '../../hooks';
 import { IC } from '../../../types';
-import { themeConfig, staticNodes, configNodes, staticEdges } from './lfConfig';
+import {
+  themeConfig,
+  staticNodes,
+  configNodes,
+  staticEdges,
+  controlConfig,
+} from './lfConfig';
 import GitHubButton from 'react-github-button';
 
 import '@logicflow/core/es/index.css';
@@ -63,6 +69,7 @@ const ConfigComponent: FC<ReactNodeProps> = (props) => {
         graph.edges.forEach((edge) => {
           graph.changeEdgeType(edge.id, value);
         });
+        break;
       }
       case 'fontColor': {
         graph.nodes.forEach((node) => {
@@ -138,7 +145,7 @@ const ConfigComponent: FC<ReactNodeProps> = (props) => {
         IntroNode.setProperty(key, value);
         break;
       }
-      case 'slogan': {
+      case 'description': {
         IntroNode.setProperty(key, value);
         break;
       }
@@ -165,7 +172,7 @@ const DemoComponent: FC<ReactNodeProps> = ({ node }) => {
   const data = node.getData();
   node.text.editable = false;
   if (!data.properties) data.properties = {};
-  const { title, engineText, description, buttons } = data.properties;
+  const { title, description, buttons } = data.properties;
   return (
     <IntroNode title={title} description={description} buttons={buttons} />
   );
@@ -257,8 +264,8 @@ export const LfContainer: FC<conatinerProps> = (props) => {
       pluginsOptions: {
         MiniMap: {
           showEdge: true,
-          width: 100,
-          height: 80,
+          width: 200,
+          height: 120,
           isShowHeader: false,
         },
       },
@@ -302,6 +309,31 @@ export const LfContainer: FC<conatinerProps> = (props) => {
       allowResize,
       hideAnchors,
     } = lf.getEditConfig();
+    if (showGitHubStarsButton) {
+      lf.addNode({
+        id: 'github-node',
+        type: 'github-node',
+        x: 1420,
+        y: 380,
+        rotate: 0.45,
+        properties: {
+          githubObj,
+          width: 100,
+          height: 100,
+        },
+      });
+    }
+    const body = document.querySelector('body');
+    const clientWidth = body.clientWidth;
+    const focusCenter = { x: 980, y: 460 };
+    const zoomSize = +(clientWidth / 2240).toFixed(1);
+    controlConfig(lf, { focusCenter, defaultZoomSize: zoomSize }).forEach(
+      (item) => {
+        const { key } = item;
+        (lf.extension.control as Control).removeItem(key);
+        (lf.extension.control as Control).addItem(item);
+      },
+    );
     lf.render({
       nodes: [
         ...staticNodes,
@@ -361,20 +393,6 @@ export const LfContainer: FC<conatinerProps> = (props) => {
       ],
       edges: staticEdges,
     });
-    if (showGitHubStarsButton) {
-      lf.addNode({
-        id: 'github-node',
-        type: 'github-node',
-        x: 1420,
-        y: 380,
-        rotate: 0.45,
-        properties: {
-          githubObj,
-          width: 100,
-          height: 100,
-        },
-      });
-    }
     advantagesList.forEach((advantage, index) => {
       const { icon, advantageStyle, iconStyle, title, position } = advantage;
       lf.addNode({
@@ -395,22 +413,8 @@ export const LfContainer: FC<conatinerProps> = (props) => {
         },
       });
     });
-    const body = document.querySelector('body');
-    const clientWidth = body.clientWidth;
-    const zoomSize = +(clientWidth / 2130).toFixed(1);
-    (lf.extension.control as Control).addItem({
-      key: 'mini-map',
-      iconClass: 'lf-control-zoomOut',
-      title: '',
-      text: '小地图',
-      onClick: (lf) => {
-        (lf.extension.miniMap as MiniMap).show(0, 0);
-        (lf.extension.miniMap as MiniMap).updatePosition('right-bottom');
-      },
-    });
-
-    lf.focusOn({ x: 1000 * zoomSize, y: 460 * zoomSize });
     lf.zoom(zoomSize);
+    lf.focusOn(focusCenter);
   });
 
   return (
