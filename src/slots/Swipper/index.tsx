@@ -40,7 +40,7 @@ export interface SwiperItemProps {
 }
 
 // import required modules
-import { EffectCreative, Autoplay, Parallax, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Parallax, Pagination, Navigation } from 'swiper/modules';
 import { Button, Card, Col, Row } from 'antd';
 import { map } from 'lodash-es';
 
@@ -80,10 +80,10 @@ export function CustomSlider() {
         </Col>
       </Row>
       <Swiper
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         speed={600}
         parallax={true}
         pagination={{
