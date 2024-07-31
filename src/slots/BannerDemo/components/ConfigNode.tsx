@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { keys } from 'lodash-es';
 import { Space, Radio, Input, Popover, Switch, Button } from 'antd';
 import { HighlightOutlined } from '@ant-design/icons';
 import { HexColorPicker } from 'react-colorful';
@@ -58,28 +59,17 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
   isSilentMode,
   setValue,
 }) => {
-  const [nodeShape, setNodeShape] = useState<string>();
-  const [edgeShape, setEdgeShape] = useState<string>('bezier');
-  const [pickerSwitchs, setPickerSwitchs] = useState<boolean[]>([
-    false,
-    false,
-    false,
-  ]);
-  const [buttonColors, setButtonColors] = useState<string[]>([
-    '#000',
-    '#fff',
-    '#000',
-    '#fff',
-  ]);
-  const [graphSwitch, setGraphSwitch] = useState<boolean[]>([
-    true,
-    false,
-    true,
-    true,
-    true,
-    true,
-    false,
-  ]);
+  const [nodeShape, setNodeShape] = useState<string>(value.node);
+  const [edgeShape, setEdgeShape] = useState<string>(value.edge);
+  const [pickerSwitchs, setPickerSwitchs] = useState<boolean[]>(
+    keys(value).map(() => false),
+  );
+  const [buttonColors, setButtonColors] = useState<string[]>(
+    keys(value).map((key) => value[key]),
+  );
+  const [graphSwitch, setGraphSwitch] = useState<boolean[]>(
+    keys(value).map((key) => value[key]),
+  );
   const onChange = (key, value) => {
     setValue(key, value);
   };

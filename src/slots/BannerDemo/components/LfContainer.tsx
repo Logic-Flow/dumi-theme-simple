@@ -293,11 +293,40 @@ export const LfContainer: FC<conatinerProps> = (props) => {
       },
       lf,
     );
-    lf.render({});
+    const {
+      stopZoomGraph,
+      stopMoveGraph,
+      adjustNodePosition,
+      adjustEdge,
+      allowRotate,
+      allowResize,
+      hideAnchors,
+    } = lf.getEditConfig();
     lf.render({
       nodes: [
         ...staticNodes,
         ...configNodes,
+        {
+          id: 'config-node-graph',
+          type: 'config-node',
+          x: 1660,
+          y: 480,
+          rotate: -0.1,
+          properties: {
+            width: 220,
+            height: 300,
+            type: 'graph',
+            defaultValue: {
+              stopZoomGraph,
+              stopMoveGraph,
+              adjustNodePosition,
+              adjustEdge,
+              allowRotate,
+              allowResize,
+              hideAnchors,
+            },
+          },
+        },
         {
           id: 'config-node-content',
           type: 'config-node',
