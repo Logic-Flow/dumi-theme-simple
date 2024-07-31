@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { keys } from 'lodash-es';
-import { Space, Radio, Input, Popover, Switch, Button } from 'antd';
+import { Space, Radio, Input, Popover, Switch, Button, Row, Col } from 'antd';
 import { HighlightOutlined } from '@ant-design/icons';
 import { HexColorPicker } from 'react-colorful';
 
@@ -61,7 +61,7 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
 }) => {
   const [nodeShape, setNodeShape] = useState<string>(value.node);
   const [edgeShape, setEdgeShape] = useState<string>(value.edge);
-  const [pickerSwitchs, setPickerSwitchs] = useState<boolean[]>(
+  const [pickerSwitch, setPickerSwitch] = useState<boolean[]>(
     keys(value).map(() => false),
   );
   const [buttonColors, setButtonColors] = useState<string[]>(
@@ -75,10 +75,10 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
   };
   return (
     <div className={styles.configCard}>
-      <Space direction="vertical" size="middle">
+      <Space direction="vertical" size="middle" style={{ width: '100%' }}>
         <div>{typeMap[type]}</div>
         {type === 'shape' && (
-          <div className={styles['configCard-shapeConfig']}>
+          <>
             <div>
               <span>节点形状：</span>
               <Radio.Group
@@ -91,11 +91,15 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
                 value={nodeShape}
                 buttonStyle="solid"
               >
-                {nodeShapeOptions.map((item) => (
-                  <Radio key={item.value} value={item.value}>
-                    {item.label}
-                  </Radio>
-                ))}
+                <Row>
+                  {nodeShapeOptions.map((item) => (
+                    <Col span={8} key={item.value}>
+                      <Radio key={item.value} value={item.value}>
+                        {item.label}
+                      </Radio>
+                    </Col>
+                  ))}
+                </Row>
               </Radio.Group>
             </div>
             <div>
@@ -116,12 +120,12 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
                 ))}
               </Radio.Group>
             </div>
-          </div>
+          </>
         )}
         {type === 'color' && (
           <Space direction="vertical">
             {colorOptions.map((item, index) => (
-              <div key={item.key}>
+              <div key={item.key} className={styles.flexRow}>
                 <span>{item.label}：</span>
                 <Popover
                   content={
@@ -137,16 +141,17 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
                   }
                   title=""
                   trigger="click"
-                  open={pickerSwitchs[index]}
+                  open={pickerSwitch[index]}
                   onOpenChange={(open: boolean) => {
-                    const newSwitch = cloneDeep(pickerSwitchs);
+                    const newSwitch = cloneDeep(pickerSwitch);
                     newSwitch[index] = open;
-                    setPickerSwitchs(newSwitch);
+                    setPickerSwitch(newSwitch);
                   }}
                 >
                   <Button
                     disabled={isSilentMode}
                     shape="circle"
+                    size="small"
                     style={{
                       backgroundColor: buttonColors[index],
                     }}
@@ -182,21 +187,22 @@ export const ConfigNode: React.FC<ConfigNodeProps> = ({
           </Space>
         )}
         {type === 'graph' && (
-          <Space direction="vertical">
+          <Space direction="vertical" style={{ width: '100%' }}>
             {graphOptions.map((item, index) => (
-              <div key={item.key}>
-                <span>{item.label}：</span>
-                <Switch
-                  disabled={isSilentMode}
-                  defaultChecked={graphSwitch[index]}
-                  onChange={(value: any) => {
-                    const newSwitch = cloneDeep(graphSwitch);
-                    newSwitch[index] = value;
-                    setGraphSwitch(newSwitch);
-                    onChange(item.key, value);
-                  }}
-                />
-              </div>
+                  <div key={item.key} className={styles.flexRow}>
+                    <span>{item.label}：</span>
+                    <Switch
+                      disabled={isSilentMode}
+                      size="small"
+                      defaultChecked={graphSwitch[index]}
+                      onChange={(value: any) => {
+                        const newSwitch = cloneDeep(graphSwitch);
+                        newSwitch[index] = value;
+                        setGraphSwitch(newSwitch);
+                        onChange(item.key, value);
+                      }}
+                    />
+                  </div>
             ))}
           </Space>
         )}

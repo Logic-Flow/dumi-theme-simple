@@ -174,7 +174,7 @@ export const configNodes = [
     rotate: -0.1,
     properties: {
       width: 200,
-      height: 210,
+      height: 180,
       type: 'color',
       defaultValue: {
         fontColor: '#fff',

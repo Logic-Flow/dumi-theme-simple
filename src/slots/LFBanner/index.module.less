@@ -25,6 +25,12 @@
   }
 }
 
+.flexRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .wrapper {
   min-height: 650px;
   max-height: 803px;
@@ -242,7 +248,7 @@
   height: 80vh;
   overflow: hidden;
   .lf-graph {
-    background-color: transparent important!;
+    background-color: transparent;
     filter: blur(5px);
   }
   :global {
@@ -336,10 +342,6 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 20px;
-  &-shapeConfig {
-    display: flex;
-    justify-content: space-between;
-  }
   box-shadow: 0 0 10px rgba(45, 113, 250, 0.163);
 }
 
@@ -494,7 +496,7 @@
       width: 91%;
       padding: 0;
       display: block;
-      bottom: 10x;
+      bottom: 10px;
       left: 4.5%;
     }
 

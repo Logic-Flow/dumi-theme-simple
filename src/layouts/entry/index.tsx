@@ -3,10 +3,11 @@ import { isArray, size, get } from 'lodash-es';
 import { useLocale, useSiteData, FormattedMessage } from 'dumi';
 import { SEO } from '../../slots/SEO';
 import { Header } from '../../slots/Header';
-import { Detail } from '../../slots/Detail';
-import { BannerDemo, FilterDivider } from '../../slots/BannerDemo';
+// import { Detail } from '../../slots/Detail';
+import { LFBanner } from '../../slots/LFBanner';
 import { Features } from '../../slots/Features';
 import { Cases } from '../../slots/Cases';
+import { CustomSlider } from '../../slots/Swipper';
 import { Companies } from '../../slots/Companies';
 import { Footer } from '../../slots/Footer';
 
@@ -22,7 +23,7 @@ export const Index = () => {
     title,
     siteUrl,
     githubUrl,
-    showBannerDemo,
+    showLFBanner,
     showSearch,
     showGithubCorner,
     showGithubStars,
@@ -70,15 +71,16 @@ export const Index = () => {
     <>
       <SEO
         title={`${metaTitle[locale.id]}`}
-        titleSuffix="AntV"
+        titleSuffix="LogicFlow"
         lang={locale.id}
       />
       <Header />
-      {showBannerDemo ? <BannerDemo {...detailProps} /> : null}
+      {showLFBanner ? <LFBanner {...detailProps} /> : null}
 
       {/* {size(detail) ? <Detail {...detailProps} /> : null} */}
       {size(featuresProps.features) ? <Features {...featuresProps} /> : null}
       {size(cases) ? <Cases {...casesProps} /> : null}
+      <CustomSlider />
       {size(companies) ? (
         <Companies
           title={<FormattedMessage id="感谢信赖" />}

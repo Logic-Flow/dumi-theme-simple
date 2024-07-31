@@ -31,7 +31,7 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: true,
     showSpecTab: true, // 是否在 demo 页展示API文档
-    showBannerDemo: true, // Banner是否以 Demo 的形式展示
+    showLFBanner: true, // Banner是否以 Demo 的形式展示
     themeSwitcher: 'g2',
     es5: false,
     version,

@@ -6,7 +6,7 @@ import { LfContainer } from './components';
 
 import styles from './index.module.less';
 
-type BannerDemoButtonProps = {
+type LFBannerButtonProps = {
   text: IC;
   link: string;
   style?: React.CSSProperties;
@@ -15,7 +15,7 @@ type BannerDemoButtonProps = {
   icon?: string;
 };
 
-type BannerDemoProps = {
+type LFBannerProps = {
   className?: string;
   style?: React.CSSProperties;
   title: IC;
@@ -23,7 +23,7 @@ type BannerDemoProps = {
   description: IC;
   image?: string;
   imageStyle?: React.CSSProperties;
-  buttons?: BannerDemoButtonProps[];
+  buttons?: LFBannerButtonProps[];
   githubUrl: string;
   showGithubStars?: boolean;
   features: any;
@@ -42,7 +42,7 @@ export const FilterDivider: React.FC<props> = ({ height }) => {
  * Index.技术栈的描述区域！
  * 各自配置
  */
-export const BannerDemo: React.FC<BannerDemoProps> = ({
+export const LFBanner: React.FC<LFBannerProps> = ({
   style,
   title,
   engine,
