@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import LogicFlow from '@logicflow/core';
 import { MiniMap, Control } from '@logicflow/extension';
 import { register, ReactNodeProps } from '@logicflow/react-node-registry';
@@ -22,7 +22,7 @@ import '@logicflow/core/es/index.css';
 import '@logicflow/extension/es/index.css';
 import styles from '../index.module.less';
 
-type conatinerProps = {
+type containerProps = {
   title: IC;
   engine?: IC;
   description: IC;
@@ -206,7 +206,7 @@ const AdvantageComponent: FC<ReactNodeProps> = ({ node }) => {
   );
 };
 
-export const LfContainer: FC<conatinerProps> = (props) => {
+export const LfContainer: FC<containerProps> = (props) => {
   const {
     title,
     description,
@@ -262,7 +262,7 @@ export const LfContainer: FC<conatinerProps> = (props) => {
       },
       plugins: [Control, MiniMap],
       pluginsOptions: {
-        MiniMap: {
+        miniMap: {
           showEdge: true,
           width: 200,
           height: 120,
@@ -326,7 +326,7 @@ export const LfContainer: FC<conatinerProps> = (props) => {
     const body = document.querySelector('body');
     const clientWidth = body.clientWidth;
     const focusCenter = { x: 980, y: 460 };
-    const zoomSize = +(clientWidth / 2240).toFixed(1);
+    const zoomSize = +(clientWidth / 1680).toFixed(1);
     controlConfig(lf, { focusCenter, defaultZoomSize: zoomSize }).forEach(
       (item) => {
         const { key } = item;
@@ -415,6 +415,17 @@ export const LfContainer: FC<conatinerProps> = (props) => {
     });
     lf.zoom(zoomSize);
     lf.focusOn(focusCenter);
+    const miniMap = lf.extension.miniMap as MiniMap
+    miniMap.show()
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const openEdgeAnimation = function () {
+      const { edges } = lf.getGraphRawData();
+      edges.forEach(({id}) => {
+        lf.openEdgeAnimation(id)
+      })
+    }
+    // openEdgeAnimation()
   });
 
   return (

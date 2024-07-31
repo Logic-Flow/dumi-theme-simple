@@ -1,4 +1,6 @@
-export const themeConfig = {
+import LogicFlow from '@logicflow/core';
+
+export const themeConfig: Partial<LogicFlow.Theme> = {
   rect: {
     fill: '#E6F6FE',
     stroke: '#E6F6FE',
@@ -38,6 +40,11 @@ export const themeConfig = {
     fontSize: 20,
     fontWeight: 'bold',
   },
+  edgeAnimation: {
+    stroke: '#d2d2d2',
+    // strokeDasharray: 5,
+    // animation: 'dashdraw .5s linear infinite',
+  }
 };
 
 export const staticNodes = [

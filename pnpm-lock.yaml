@@ -24,14 +24,14 @@ importers:
         specifier: ^3.3.0
         version: 3.6.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(search-insights@2.15.0)
       '@logicflow/core':
-        specifier: 2.0.0-beta.8
-        version: 2.0.0-beta.8
+        specifier: 2.0.0-beta.9
+        version: 2.0.0-beta.9
       '@logicflow/extension':
-        specifier: 2.0.0-beta.8
-        version: 2.0.0-beta.8
+        specifier: 2.0.0-beta.9
+        version: 2.0.0-beta.9
       '@logicflow/react-node-registry':
-        specifier: 0.0.1-beta.2
-        version: 0.0.1-beta.2(@logicflow/core@2.0.0-beta.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.0.1-beta.4
+        version: 0.0.1-beta.4(@logicflow/core@2.0.0-beta.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@monaco-editor/react':
         specifier: ^4.4.6
         version: 4.6.0(monaco-editor@0.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1272,16 +1272,16 @@ packages:
     peerDependencies:
       react: '>=16.3.0'
 
-  '@logicflow/core@2.0.0-beta.8':
-    resolution: {integrity: sha512-WFy61iZC/QiuSknmZyBDP4BLr5DbBbsBwedG96e5i8xXBWgq9CLu4uyD8nqQFCHY/on0Iuekz/eY6PM2CaWN1g==}
+  '@logicflow/core@2.0.0-beta.9':
+    resolution: {integrity: sha512-XTtMTU5qRk6ENq3Wwuz/2kBdWLrlz7ESjFLjQmhbReZH9AM+NhHOmr35QhOP1Rvh9ipzGDbvWUOgP36dxtxnsQ==}
 
-  '@logicflow/extension@2.0.0-beta.8':
-    resolution: {integrity: sha512-uJyHPJ5VlMmJrxzSWq7hhDzJXrkdmI4j3RR02g5zlazU0xyp4kfV5NtK/7lL325+j/y3H9hmKwQK8lYV9JsoWA==}
+  '@logicflow/extension@2.0.0-beta.9':
+    resolution: {integrity: sha512-vJfsGrMGnOq2+lFFcbz9t0+7EpFulq0EIt4o8rSu3zpjnzFsL025Flv74qO2TowQjeX/QNo1jSaKfPkUm1iVVw==}
 
-  '@logicflow/react-node-registry@0.0.1-beta.2':
-    resolution: {integrity: sha512-OSfi/tBYdzQ72KW6C+S9BX86UB7eup23mrKW19RPdrANLGEZqdrmFO1t5Rf84qAqRhpzCnfHX54JmbKFrPLG6Q==}
+  '@logicflow/react-node-registry@0.0.1-beta.4':
+    resolution: {integrity: sha512-Sl2YIXC/IqSR0wHtqC4IKqiN7UngLkUxKWkGPWQpTmd07EisE6iRjPgt8jV6NX3gdWDv3Li5JU+m7d2tynCoUg==}
     peerDependencies:
-      '@logicflow/core': 2.0.0-beta.5
+      '@logicflow/core': 2.0.0-beta.7
       react: '>= 18.0.0'
       react-dom: '>= 18.0.0'
 
@@ -9384,7 +9384,7 @@ snapshots:
       react: 18.3.1
       react-is: 16.13.1
 
-  '@logicflow/core@2.0.0-beta.8':
+  '@logicflow/core@2.0.0-beta.9':
     dependencies:
       classnames: 2.5.1
       lodash-es: 4.17.21
@@ -9395,10 +9395,10 @@ snapshots:
       preact: 10.23.1
       uuid: 9.0.1
 
-  '@logicflow/extension@2.0.0-beta.8':
+  '@logicflow/extension@2.0.0-beta.9':
     dependencies:
       '@antv/hierarchy': 0.6.12
-      '@logicflow/core': 2.0.0-beta.8
+      '@logicflow/core': 2.0.0-beta.9
       classnames: 2.5.1
       lodash-es: 4.17.21
       medium-editor: 5.23.3
@@ -9407,9 +9407,9 @@ snapshots:
       rangy: 1.3.1
       vanilla-picker: 2.12.3
 
-  '@logicflow/react-node-registry@0.0.1-beta.2(@logicflow/core@2.0.0-beta.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@logicflow/react-node-registry@0.0.1-beta.4(@logicflow/core@2.0.0-beta.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@logicflow/core': 2.0.0-beta.8
+      '@logicflow/core': 2.0.0-beta.9
       '@types/react': 18.3.3
       '@types/react-dom': 18.3.0
       lodash-es: 4.17.21
