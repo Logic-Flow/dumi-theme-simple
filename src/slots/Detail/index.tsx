@@ -17,7 +17,7 @@ type DetailButtonProps = {
   type?: string;
   shape?: 'round' | 'square';
   icon?: string;
-}
+};
 
 type DetailProps = {
   className?: string;
@@ -31,7 +31,7 @@ type DetailProps = {
   githubUrl: string;
   showGithubStars?: boolean;
   news: NewsProps[];
-}
+};
 
 /**
  * Index.技术栈的描述区域！
@@ -52,21 +52,24 @@ export const Detail: React.FC<DetailProps> = ({
   ...v
 }) => {
   const [remoteNews, setRemoteNews] = useState<NewsProps[]>([]);
-  const lang = useLocale().id
+  const lang = useLocale().id;
 
   useEffect(() => {
-    fetch('https://my-json-server.typicode.com/Logic-Flow/logicflow-sites-data/bannerMessages', // 生产环境
+    fetch(
+      'https://my-json-server.typicode.com/Logic-Flow/logicflow-sites-data/bannerMessages', // 生产环境
     )
       .then((res) => res.json())
       .then((data) => {
         setRemoteNews(data);
-      }).catch(() => {
+      })
+      .catch(() => {
         setRemoteNews([]);
       });
   }, []);
 
   const githubObj = gh(githubUrl);
-  const showGitHubStarsButton = showGithubStars && githubObj && githubObj.owner && githubObj.name;
+  const showGitHubStarsButton =
+    showGithubStars && githubObj && githubObj.owner && githubObj.name;
 
   const engineText = ic(engine);
 
@@ -75,57 +78,67 @@ export const Detail: React.FC<DetailProps> = ({
       <div className={styles.content}>
         <div className={styles.text}>
           <div className={cx(styles.title, 'detail-title')}>
-            <span className={cx(styles.engine, 'detail-engine')}>{engineText}</span>{ic(title).replace(engineText, '')}
+            <span className={cx(styles.engine, 'detail-engine')}>
+              {engineText}
+            </span>
+            {ic(title).replace(engineText, '')}
           </div>
           <div className={cx(styles.description, 'detail-description')}>
             {ic(description)}
           </div>
           {/** buttons  */}
           <div className={cx(styles.buttons, 'detail-buttons')}>
-            {
-              buttons.map(({ type, style, text, link, shape, icon }) => {
-                return (
-                  <a
-                    key={ic(text)}
-                    className={cx(
-                      styles.buttonLink,
-                      styles[type || ''],
-                      type === 'primary' ? 'primary-button' : 'common-button'
-                    )}
-                    style={{
-                      borderRadius: shape === 'round' ? '1000px' : '12px',
-                      ...style,
-                    }}
-                    href={link[lang] ? link[lang] : link}
-                  >
-                    {icon !== null && <div className={styles.icon} style={icon ? { backgroundImage: `url(${icon})` } : {}} />}
-                    <span className={styles.button}>{ic(text)}</span>
-                  </a>
-                )
-              })
-            }
-            {
-              showGitHubStarsButton && <div key='github' className={styles.githubWrapper}>
+            {buttons.map(({ type, style, text, link, shape, icon }) => {
+              return (
+                <a
+                  key={ic(text)}
+                  className={cx(
+                    styles.buttonLink,
+                    styles[type || ''],
+                    type === 'primary' ? 'primary-button' : 'common-button',
+                  )}
+                  style={{
+                    borderRadius: shape === 'round' ? '1000px' : '12px',
+                    ...style,
+                  }}
+                  href={link[lang] ? link[lang] : link}
+                >
+                  {icon !== null && (
+                    <div
+                      className={styles.icon}
+                      style={icon ? { backgroundImage: `url(${icon})` } : {}}
+                    />
+                  )}
+                  <span className={styles.button}>{ic(text)}</span>
+                </a>
+              );
+            })}
+            {showGitHubStarsButton && (
+              <div key="github" className={styles.githubWrapper}>
                 <GitHubButton
-                  type='stargazers'
-                  size='large'
+                  type="stargazers"
+                  size="large"
                   namespace={githubObj.owner}
                   repo={githubObj.name}
                 />
               </div>
-            }
+            )}
           </div>
         </div>
         {/** 新闻公告 */}
         <div className={cx(styles.news, 'news')}>
-          {
-            (news || remoteNews).slice(0, 3).map((n, i) => (<News key={i} index={i} {...n} />))
-          }
+          {(news || remoteNews).slice(0, 3).map((n, i) => (
+            <News key={i} index={i} {...n} />
+          ))}
         </div>
         {/** image */}
         <div className={cx(styles.teaser, 'teaser')}>
           <div className={cx(styles.teaserimg, 'teaser-img')}>
-            <img width="100%" style={{ marginLeft: '100px', marginTop: '40px', ...imageStyle }} src={image} />
+            <img
+              width="100%"
+              style={{ marginLeft: '100px', marginTop: '40px', ...imageStyle }}
+              src={image}
+            />
           </div>
         </div>
         <img

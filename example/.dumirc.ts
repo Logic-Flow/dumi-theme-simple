@@ -6,17 +6,17 @@ export default defineConfig({
     { id: 'zh', name: '中文' },
     { id: 'en', name: 'English' },
   ],
-  title: 'LogicFlow dumi-theme-simple 主题包', // 网站header标题
+  title: 'LogicFlow 主题包', // 网站header标题
   favicons: [
-    'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/favicon.png',
+    'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/favicon.png',
   ], // 网站 favicon
   metas: [
     // 自定义 meta 标签
-    { name: 'keywords', content: 'dumi-theme-simple' },
+    { name: 'keywords', content: 'logicflow-theme-simple' },
     { name: 'description', content: '基于 dumi2 的 LogicFlow 官网主题包' },
   ],
   themeConfig: {
-    title: 'dumi-theme-simple',
+    title: 'LogicFlow',
     description: '基于 dumi2 的 LogicFlow 官网主题包',
     defaultLanguage: 'zh', // 默认语言
     footer: 'Copyright © 2024 | Powered by LogicFlow Team', // footer文案
@@ -31,6 +31,7 @@ export default defineConfig({
     showChartResize: true, // 是否在 demo 页展示图表视图切换
     showAPIDoc: true,
     showSpecTab: true, // 是否在 demo 页展示API文档
+    showBannerDemo: true, // Banner是否以 Demo 的形式展示
     themeSwitcher: 'g2',
     es5: false,
     version,
@@ -208,37 +209,100 @@ export default defineConfig({
     /** 首页技术栈介绍 */
     detail: {
       engine: {
-        zh: 'dumi-theme-simple',
-        en: 'dumi-theme-simple',
+        zh: 'LogicFlow',
+        en: 'LogicFlow',
       },
       title: {
-        zh: 'dumi-theme-simple·主题包',
-        en: 'dumi-theme-simple·Theme Pack',
+        zh: 'LogicFlow·主题包',
+        en: 'LogicFlow·Theme Pack',
       },
       description: {
-        zh: '基于 dumi2 封装，提供灵活多变的 slots 插槽，抽取大量配置，一秒搭建 AntV 的各个技术栈官网。',
-        en: 'Based on the dumi2 package, it provides flexible and changeable slots, extracts a large number of configurations, and builds the official website of each technology stack of AntV in one second.',
+        zh: '低成本实现，让逻辑管理更简单、更高效.',
+        en: 'Low-cost implementation, so that logic management is simpler and more efficient.',
       },
       image:
         'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*wo_LToatmbwAAAAAAAAAAABkARQnAQ',
       buttons: [
         {
           text: {
-            zh: '示例官网',
-            en: 'Example Site',
+            zh: '开始使用',
+            en: 'Getting Started',
           },
-          link: `https://github.com/antvis/antvis.github.io`,
+          link: `/tutorial/get-started`,
+          type: 'primary',
+          style: {
+            margin: 20,
+          },
         },
         {
           text: {
-            zh: '迁移手册',
-            en: 'Migration Manual',
+            zh: '图表示例',
+            en: 'Examples',
           },
-          link: `https://www.yuque.com/antv/gpzzmb/cyczx0`,
-          type: 'primary',
+          link: `/examples`,
+          style: {
+            margin: 20,
+          },
+        },
+      ],
+      advantages: [
+        {
+          icon: 'icon-liuchengtu',
+          advantageStyle: {
+            background: '#fdfcdf',
+            color: '#FFCA40',
+          },
+          iconStyle: {
+            fontSize: '42px',
+            color: '#FFCA40',
+            strokeWidth: 10,
+            stroke: '#FFCA40',
+          },
+          position: {
+            x: 0,
+            y: 650,
+          },
+          // title: {
+          //   zh: '可视化模型',
+          //   en: 'The Visualization model',
+          // },
+        },
+        {
+          icon: 'icon-leftfont-07',
+          advantageStyle: {
+            background: '#B5AdF9',
+            borderRadius: 20,
+          },
+          iconStyle: {
+            fontSize: '36px',
+            color: '#F8F6FF',
+            strokeWidth: 10,
+            stroke: '#F8F6FF',
+          },
+          position: {
+            x: 1890,
+            y: 430,
+          },
+        },
+        {
+          icon: 'icon-chajian1',
+          advantageStyle: {
+            background: '#fff',
+          },
+          iconStyle: {
+            fontSize: '36px',
+            color: '#333',
+            strokeWidth: 10,
+            stroke: '#333',
+          },
+          position: {
+            x: 1720,
+            y: 180,
+          },
         },
       ],
     },
+    news: [],
     /** 新闻公告，优先选择配置的，如果没有配置则使用远程的！ */
     // news: [
     //   {
@@ -268,42 +332,45 @@ export default defineConfig({
     // ],
     /** 首页特性介绍 */
     features: {
-      title: {
-        zh: '我们的优势',
-        en: 'Our advantage',
+      style: {
+        paddingTop: 50,
       },
+      // title: {
+      //   zh: '我们的优势',
+      //   en: 'Our advantage',
+      // },
       cards: [
         {
-          icon: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*4x_KTKyqwJgAAAAAAAAAAABkARQnAQ',
+          icon: 'icon-liuchengtu',
           title: {
-            zh: '千变万化，自由组合',
-            en: 'The ever-changing, free combination',
+            zh: '可视化模型',
+            en: 'The Visualization model',
           },
           description: {
-            zh: '任何图表，都可以基于图形语法灵活绘制，满足你无限的创意',
-            en: 'Any chart can be drawn flexibly based on graphic syntax to satisfy your unlimited creativity',
+            zh: '通过 LogicFlow 提供的直观可视化界面，用户可以轻松创建、编辑和管理复杂的逻辑流程图。',
+            en: 'With the intuitive visual interface provided by LogicFlow, users can easily create, edit, and manage complex logical flowcharts.',
           },
         },
         {
-          icon: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ',
+          icon: 'icon-leftfont-07',
           title: {
-            zh: '专业完备',
-            en: 'Professional complete',
+            zh: '高可定制性',
+            en: 'High customizability',
           },
           description: {
-            zh: '大量产品实践之上，提供绘图引擎、完备图形语法、专业设计规范',
-            en: 'On top of a large number of product practices, it provides a drawing engine, a complete graphics grammar, and professional design rules',
+            zh: '用户可以根据自己的需要定制节点、连接器和样式，创建符合特定用例的定制逻辑流程图。',
+            en: 'Users can customize nodes, connectors, and styles to suit their needs, creating custom logical flowcharts that match specific use cases.',
           },
         },
         {
-          icon: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*_riSQZrgczgAAAAAAAAAAABkARQnAQ',
+          icon: 'icon-chajian1',
           title: {
-            zh: '生动，可交互',
-            en: 'Vivid, interactive',
+            zh: '自执行引擎',
+            en: 'Self-executing engine',
           },
           description: {
-            zh: '强大的交互语法，助力可视分析，让图表栩栩如生',
-            en: 'owerful interactive syntax to help visual analysis and make charts come alive',
+            zh: '执行引擎支持浏览器端执行流程图逻辑，为无代码执行提供新思路。',
+            en: 'The execution engine supports browser-side flow chart logic, providing new ideas for code-free execution.',
           },
         },
       ],
@@ -313,7 +380,7 @@ export default defineConfig({
       {
         logo: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*-dLnTIexOxwAAAAAAAAAAABkARQnAQ',
         title: {
-          zh: '精品 Gallery',
+          zh: '场景示例 Gallery',
           en: 'Boutique Gallery',
         },
         description: {
@@ -322,42 +389,34 @@ export default defineConfig({
         },
         // link: `/examples/gallery`,
         image:
-          'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*hDrgRb7ma4EAAAAAAAAAAABkARQnAQ',
+          'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/examples.png',
       },
     ],
     /** 首页合作公司 */
     companies: [
       {
-        name: '阿里云',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*V_xMRIvw2iwAAAAAAAAAAABkARQnAQ',
+        name: '滴滴',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/DiDiLogo.svg',
       },
       {
-        name: '支付宝',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*lYDrRZvcvD4AAAAAAAAAAABkARQnAQ',
-      },
-      {
-        name: '天猫',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*BQrxRK6oemMAAAAAAAAAAABkARQnAQ',
-      },
-      {
-        name: '淘宝网',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*1l8-TqUr7UcAAAAAAAAAAABkARQnAQ',
-      },
-      {
-        name: '网上银行',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ZAKFQJ5Bz4MAAAAAAAAAAABkARQnAQ',
+        name: '中国科学院',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/CAOS%20Logo.svg',
       },
       {
         name: '京东',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*yh-HRr3hCpgAAAAAAAAAAABkARQnAQ',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/JDLogo.svg',
       },
       {
-        name: 'yunos',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*_js7SaNosUwAAAAAAAAAAABkARQnAQ',
+        name: '华为数字能源',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/HWLogo.svg',
       },
       {
-        name: '菜鸟',
-        img: 'https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*TgV-RZDODJIAAAAAAAAAAABkARQnAQ',
+        name: 'Moka',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MokaLogo.svg',
+      },
+      {
+        name: '美团',
+        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MTLogo.svg',
       },
     ],
     // example代码编辑器设置

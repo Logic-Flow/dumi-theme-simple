@@ -65,8 +65,8 @@ const getTopicExamples = (topicPath: string, showAPIDoc: boolean) => {
       let api: null | { zh: string; en: string } = null;
       if (showAPIDoc) {
         api = {
-          zh: getExampleAPI(path.resolve(item, 'API.zh.md')),
-          en: getExampleAPI(path.resolve(item, 'API.en.md')),
+          zh: getExampleAPI(path.resolve(item, 'api.zh.md')),
+          en: getExampleAPI(path.resolve(item, 'api.en.md')),
         };
       }
       const exampleMetaZhContent: Record<string, any> = fm(exampleMetaZh);

@@ -28,7 +28,7 @@
     "lint:es": "eslint \"{src,test}/**/*.{js,jsx,ts,tsx}\"",
     "prepare": "father link-dev-theme",
     "prepublishOnly": "npm run build",
-    "start": "cd example && npm run start"
+    "start": "cd example && npm run dev"
   },
   "commitlint": {
     "extends": [
@@ -58,6 +58,9 @@
     "@babel/standalone": "^7.19.5",
     "@docsearch/css": "^3.3.0",
     "@docsearch/react": "^3.3.0",
+    "@logicflow/core": "2.0.0-beta.8",
+    "@logicflow/extension": "2.0.0-beta.8",
+    "@logicflow/react-node-registry": "0.0.1-beta.2",
     "@monaco-editor/react": "^4.4.6",
     "@stackblitz/sdk": "^1.8.0",
     "antd": "^4.23.5",
@@ -78,6 +81,7 @@
     "rc-drawer": "^4.0.0",
     "rc-footer": "^0.6.6",
     "react": "^18.2.0",
+    "react-colorful": "^5.6.1",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^3.1.4",
     "react-github-button": "^0.1.11",
@@ -93,6 +97,7 @@
     "semver": "^7.3.8",
     "size-sensor": "^1.0.1",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.1.8",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2",
     "uri-parse": "^1.0.0",
