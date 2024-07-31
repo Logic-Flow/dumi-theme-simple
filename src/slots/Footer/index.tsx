@@ -76,9 +76,9 @@ export const Footer: React.FC<FooterProps> = (props) => {
               alt="seeconf"
             />
           ),
-          title: 'SEE Conf',
-          description: <FormattedMessage id="蚂蚁体验科技大会" />,
-          url: 'https://seeconf.antfin.com/',
+          title: '稀土掘金',
+          description: <FormattedMessage id="稀土掘金" />,
+          url: 'https://juejin.cn/user/2885546018354925',
           openExternal: true,
         },
       ],
@@ -103,29 +103,18 @@ export const Footer: React.FC<FooterProps> = (props) => {
     };
 
     const more = {
-      title: <FormattedMessage id="更多产品" />,
+      title: <FormattedMessage id="友情链接" />,
       items: [
         {
           icon: (
             <img
               src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-              alt="Ant Design"
+              alt="小桔问卷"
             />
           ),
-          title: 'Ant Design',
-          url: 'https://ant.design',
-          description: <FormattedMessage id="企业级 UI 设计语言" />,
-          openExternal: true,
-        },
-        {
-          icon: (
-            <img
-              src="https://gw.alipayobjects.com/zos/rmsportal/nBVXkrFdWHxbZlmMbsaH.svg"
-              alt="xtech"
-            />
-          ),
-          title: <FormattedMessage id="蚂蚁体验科技" />,
-          url: 'https://xtech.antfin.com/',
+          title: '小桔问卷',
+          url: 'https://xiaojuwenjuan.com/',
+          description: <FormattedMessage id="专业的调研/考试技术提供商" />,
           openExternal: true,
         },
       ],

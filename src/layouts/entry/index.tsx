@@ -41,6 +41,7 @@ export const Index = () => {
     className,
     style,
     id,
+    footerColumns,
   } = themeConfig;
 
   const detailProps = {
@@ -87,7 +88,7 @@ export const Index = () => {
           companies={companies}
         />
       ) : null}
-      <Footer />
+      <Footer columns={footerColumns} />
     </>
   );
 };

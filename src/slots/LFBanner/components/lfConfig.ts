@@ -42,8 +42,6 @@ export const themeConfig: Partial<LogicFlow.Theme> = {
   },
   edgeAnimation: {
     stroke: '#d2d2d2',
-    // strokeDasharray: 5,
-    // animation: 'dashdraw .5s linear infinite',
   }
 };
 
