@@ -214,7 +214,77 @@ export const staticEdges = [
   },
 ];
 
+export const controlConfig = (lf, params) => {
+  const { focusCenter, defaultZoomSize } = params;
+  return [
+    {
+      key: 'zoom-out',
+      iconClass: 'lf-control-zoomOut',
+      title: '缩小流程图',
+      text: '缩小',
+      onClick: () => {
+        lf.zoom(false);
+        lf.focusOn(focusCenter);
+      },
+    },
+    {
+      key: 'zoom-in',
+      iconClass: 'lf-control-zoomIn',
+      title: '放大流程图',
+      text: '放大',
+      onClick: () => {
+        lf.zoom(true);
+        lf.focusOn(focusCenter);
+      },
+    },
+    {
+      key: 'reset',
+      iconClass: 'lf-control-fit',
+      title: '恢复流程原有尺寸',
+      text: '适应',
+      onClick: () => {
+        lf.zoom(defaultZoomSize);
+        lf.focusOn(focusCenter);
+      },
+    },
+    {
+      key: 'undo',
+      iconClass: 'lf-control-undo',
+      title: '回到上一步',
+      text: '上一步',
+      onClick: () => {
+        lf.undo();
+      },
+    },
+    {
+      key: 'redo',
+      iconClass: 'lf-control-redo',
+      title: '移到下一步',
+      text: '下一步',
+      onClick: () => {
+        lf.redo();
+      },
+    },
+    {
+      key: 'mini-map',
+      iconClass: 'icon-ditu',
+      title: '',
+      text: '小地图',
+      onClick: () => {
+        const { isShow } = lf.extension.miniMap;
+        if (isShow) {
+          lf.extension.miniMap.hide();
+          return;
+        }
+        lf.extension.miniMap.show();
+      },
+    },
+  ];
+};
+
 export default {
   themeConfig,
   staticNodes,
+  configNodes,
+  staticEdges,
 };
