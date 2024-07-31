@@ -18,7 +18,7 @@ export const useChinaMirrorHost = (): [boolean] => {
 
 export const useScrollToTop = () => {
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-}
+};
 
 export const useLogoLink = ({
   link = '',
@@ -52,7 +52,9 @@ export const useLogoLink = ({
 };
 
 export const usePrevAndNext = (): NavigatorBannerProps['post'][] => {
-  const [prevAndNext, setPrevAndNext] = useState<NavigatorBannerProps['post'][]>([]);
+  const [prevAndNext, setPrevAndNext] = useState<
+    NavigatorBannerProps['post'][]
+  >([]);
   useEffect(() => {
     const menuNodes = document.querySelectorAll('aside .ant-menu-item a');
     const currentMenuNode = document.querySelector(
@@ -69,31 +71,31 @@ export const usePrevAndNext = (): NavigatorBannerProps['post'][] => {
         : undefined;
     const prev = prevNode
       ? {
-        slug: prevNode.getAttribute('href') || undefined,
-        title: prevNode.textContent || undefined,
-      }
+          slug: prevNode.getAttribute('href') || undefined,
+          title: prevNode.textContent || undefined,
+        }
       : undefined;
     const next = nextNode
       ? {
-        slug: nextNode.getAttribute('href') || undefined,
-        title: nextNode.textContent || undefined,
-      }
+          slug: nextNode.getAttribute('href') || undefined,
+          title: nextNode.textContent || undefined,
+        }
       : undefined;
     setPrevAndNext([prev, next]);
   }, []);
   return prevAndNext;
 };
 
+export function icWithLocale(v: string | object, locale) {
+  return typeof v === 'object' ? get(v, [locale]) : v;
+}
 /**
  * i18n .umirc config
  * 如果是 object，则取 locale，否则直接用
- * @param v 
+ * @param v
  */
 export function ic(v: string | object) {
   const locale = useLocale();
+  console.log('locale', locale);
   return icWithLocale(v, locale.id);
-}
-
-export function icWithLocale(v: string | object, locale) {
-  return typeof v === 'object' ? get(v, [locale]) : v;
 }

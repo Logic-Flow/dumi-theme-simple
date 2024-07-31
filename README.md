@@ -40,6 +40,9 @@ $ npm install
 After the dependencies are installed, a symlink from `example/.dumi/theme` to `../../src` will be created automatically, the symlink makes dumi load our theme package as a local theme, so we can start the example directly, HMR is also available:
 
 ```bash
+# build project
+pnpm run build
+
 # switch to example directory
 $ cd example
 
