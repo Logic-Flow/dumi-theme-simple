@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
       items: [
         {
           icon: <ZhihuOutlined style={{ color: '#0084ff' }} />,
-          title: <FormattedMessage id="体验科技专栏" />,
+          title: <FormattedMessage id="知乎专栏" />,
           url: 'http://zhuanlan.zhihu.com/xtech',
           openExternal: true,
         },
@@ -113,8 +113,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
             />
           ),
           title: '小桔问卷',
-          url: 'https://github.com/didi/xiaoju-survey',
-          description: <FormattedMessage id="企业级调研服务提供商" />,
+          url: 'https://xiaojuwenjuan.com/',
+          description: <FormattedMessage id="专业的调研技术提供商" />,
           openExternal: true,
         },
       ],

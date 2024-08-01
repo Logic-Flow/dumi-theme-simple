@@ -15,7 +15,7 @@ import URI from 'uri-parse';
 
 import { ContentTable } from '../ContentTable';
 import { SEO } from '../SEO';
-import { useScrollToTop } from '../hooks';
+// import { useScrollToTop } from '../hooks';
 import { NavigatorBanner } from './NavigatorBanner';
 import ReadingTime from './ReadingTime';
 import { usePreview } from './usePreview';
@@ -29,7 +29,7 @@ import {
 import 'rc-drawer/assets/index.css';
 import styles from './index.module.less';
 
-export type ManualContent = {
+export type ManualContentProps = {
   readonly children: any;
 };
 
@@ -62,10 +62,18 @@ type FullSidebarData = {
 
 type SidebarData = MenuItem[];
 
+// export type ManualMenuProps = {
+//   items: MenuItemType[],
+//
+// }
+// export const ManualMenu = ({ children }) => {
+//
+// }
+
 /**
  * 文档的结构
  */
-export const ManualContent: React.FC<ManualContent> = ({ children }) => {
+export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
   const locale = useLocale();
   const currentLocale: string = locale.id;
 
@@ -87,11 +95,11 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
   }, '');
   const { time } = readingTime(text);
 
-  // linkoTitle用来映射路由和Title
-  const linkoTitle: linkToTitle = {};
+  // linkToTitle用来映射路由和Title
+  const linkToTitle: linkToTitle = {};
   for (const route of Object.values(sidebar)) {
     route[0].children.forEach((item) => {
-      linkoTitle[item.link] = item.title as unknown as string;
+      linkToTitle[item.link] = item.title as unknown as string;
     });
   }
   /**
@@ -100,10 +108,8 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
    */
   const baseRoute = getBaseRoute();
 
-  // 获取最终的 MenuData
-  const renderSidebar = getMenuData(sidebar, docs, baseRoute, []);
   function getMenuData(
-    funllSidebarData: FullSidebarData,
+    fullSidebarData: FullSidebarData,
     rootList: SidebarData,
     hrefId: string,
     list: SidebarData,
@@ -135,8 +141,8 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
       for (const item of list) {
         item.children = [];
         fullSidebarDataToMenuData(rootList, item.key, item.children);
-        funllSidebarData[item.key] &&
-          funllSidebarData[item.key][0].children?.forEach((itemChild) => {
+        if (fullSidebarData[item.key]) {
+          fullSidebarData[item.key][0].children?.forEach((itemChild) => {
             const label = itemChild.title as unknown as string;
             const key = itemChild.link as string;
             const tag = get(itemChild, ['frontmatter', 'tag']);
@@ -149,16 +155,18 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
               key,
             });
           });
+        }
+
         // children 的 order 排序
         item.children.sort((a, b) => a.order - b.order);
-        if (item.children.length == 0) {
+        if (item.children.length === 0) {
           delete item.children;
         }
       }
 
-      if (hrefId == baseRoute) {
-        funllSidebarData[baseRoute] &&
-          funllSidebarData[baseRoute][0].children?.forEach((itemChild) => {
+      if (hrefId === baseRoute) {
+        if (fullSidebarData[baseRoute]) {
+          fullSidebarData[baseRoute][0].children?.forEach((itemChild) => {
             const key = itemChild.link!;
             const label = itemChild.title as unknown as string;
             list.push({
@@ -167,14 +175,20 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
               key,
             });
           });
+        }
         list.sort((a, b) => {
           return a.order - b.order;
         });
         return list;
       }
     }
+
     return fullSidebarDataToMenuData(rootList, hrefId, list);
   }
+
+  // 获取最终的 MenuData
+  const renderSidebar = getMenuData(sidebar, docs, baseRoute, []);
+  console.log('renderSidebar -->>', renderSidebar);
 
   // 获取打开的菜单栏
   const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>(() =>
@@ -187,7 +201,7 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
   // 点击菜单栏
   const onClick = (e: any) => {
     navigate(e.key);
-    useScrollToTop();
+    // useScrollToTop();
   };
   const [defaultSelectedKey, setDefaultSelectedKey] = useState<string>();
   //上一夜下一页
@@ -196,7 +210,7 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
 
   // 所有的 sidebar 路由
   const sidebarRoutes = [];
-  for (const route of Object.keys(linkoTitle)) {
+  for (const route of Object.keys(linkToTitle)) {
     sidebarRoutes.push(route);
   }
 
@@ -209,18 +223,11 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
 
   // 改变菜单栏选中和 openKeys 状态
   useEffect(() => {
-    if (window.location.pathname == indexRoute) {
+    if (window.location.pathname === indexRoute) {
       setDefaultOpenKeys(getOpenKeys());
     }
     setDefaultSelectedKey(window.location.pathname);
   }, [window.location.pathname]);
-
-  useEffect(() => {
-    // 监听选中的menu-item 拿到 prev and next
-    getPreAndNext();
-  }, [defaultSelectedKey]);
-
-  usePreview({}, defaultSelectedKey);
 
   function getPreAndNext() {
     const menuNodes = document.querySelectorAll('aside .ant-menu-item');
@@ -256,11 +263,15 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
         : undefined,
     );
   }
-  const getGithubSourceUrl = ({
-    githubUrl,
-    relativePath,
-    prefix,
-  }: {
+
+  useEffect(() => {
+    // 监听选中的menu-item 拿到 prev and next
+    getPreAndNext();
+  }, [defaultSelectedKey]);
+
+  usePreview({}, defaultSelectedKey)
+
+  const getGithubSourceUrl = ({ githubUrl, relativePath, prefix }: {
     githubUrl: string;
     relativePath: string;
     prefix: string;
@@ -274,6 +285,7 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
     }
     return `${githubUrl}/edit/master/${prefix}/${relativePath}`;
   };
+
   const menu = (
     <Menu
       onClick={onClick}
@@ -293,38 +305,38 @@ export const ManualContent: React.FC<ManualContent> = ({ children }) => {
 
   return (
     <>
-      <SEO title={linkoTitle[window.location.pathname]} lang={locale.id} />
+      <SEO title={linkToTitle[window.location.pathname]} lang={locale.id} />
       <Layout style={{ background: '#fff' }} hasSider className={styles.layout}>
         <Affix
           offsetTop={0}
           className={styles.affix}
           style={{ height: is767Wide ? '100vh' : 'inherit' }}
         >
-          {is767Wide ? (
+          {/*{is767Wide ? (*/}
             <Layout.Sider width="auto" theme="light" className={styles.sider}>
               {menu}
             </Layout.Sider>
-          ) : (
-            <Drawer
-              handler={
-                drawOpen ? (
-                  <MenuFoldOutlined className={styles.menuSwitch} />
-                ) : (
-                  <MenuUnfoldOutlined className={styles.menuSwitch} />
-                )
-              }
-              wrapperClassName={styles.menuDrawer}
-              onChange={(open?: boolean) => setDrawOpen(!!open)}
-              width={280}
-            >
-              {menu}
-            </Drawer>
-          )}
+          {/*) : (*/}
+          {/*  <Drawer*/}
+          {/*    handler={*/}
+          {/*      drawOpen ? (*/}
+          {/*        <MenuFoldOutlined className={styles.menuSwitch} />*/}
+          {/*      ) : (*/}
+          {/*        <MenuUnfoldOutlined className={styles.menuSwitch} />*/}
+          {/*      )*/}
+          {/*    }*/}
+          {/*    wrapperClassName={styles.menuDrawer}*/}
+          {/*    onChange={(open?: boolean) => setDrawOpen(!!open)}*/}
+          {/*    width={280}*/}
+          {/*  >*/}
+          {/*    {menu}*/}
+          {/*  </Drawer>*/}
+          {/*)}*/}
         </Affix>
         <Layout.Content className={styles.content}>
           <div className={styles.main}>
             <h1 className={styles.contentTitle}>
-              {linkoTitle[window.location.pathname]}
+              {linkToTitle[window.location.pathname]}
               {/* todo 编辑地址各种各样，需要有单独的配置，暂时关闭！这儿忘关了 */}
               {/* <Tooltip title={'在 GitHub 上编辑'}>
                 <a

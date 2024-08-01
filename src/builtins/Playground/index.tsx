@@ -1,7 +1,7 @@
 import { useSiteData } from 'dumi';
 import { get } from 'lodash-es';
 import React, { useContext } from 'react';
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary } from 'react-error-boundary';
 import { LogicFlowThemeContext } from '../../context';
 import { CodeRunner } from '../../slots/CodeRunner';
 
@@ -34,7 +34,7 @@ const Playground: React.FC<PlaygroundProps> = ({ rid, path, ratio, height = 400 
   const { meta }: any = useContext(LogicFlowThemeContext);
   const { exampleTopics } = meta;
   // 'case/area/demo/area5.ts'
-  const [_, topic, example, demo] = path.match(/([\w-]+)\/([\w-]+)\/demo\/([\w-]+)/i) as string[];
+  const [, topic, example, demo] = path.match(/([\w-]+)\/([\w-]+)\/demo\/([\w-]+)/i) as string[];
 
   const themeConfig = useSiteData();
   const defaultSize = get(themeConfig, 'editor.playgroundSize', 0.38);
@@ -55,14 +55,14 @@ const Playground: React.FC<PlaygroundProps> = ({ rid, path, ratio, height = 400 
   );
 };
 
-function ErrorFallback({error}) {
+function ErrorFallback({ error }) {
   console.log(error);
   return (
     <div role="alert">
       <p>Something went wrong:</p>
       <pre>{error.message}</pre>
     </div>
-  )
+  );
 }
 
 export default ((props: PlaygroundProps) => {
