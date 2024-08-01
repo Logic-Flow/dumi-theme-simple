@@ -44,7 +44,7 @@ export const ExampleSider: React.FC<ExampleSiderProps> = (props) => {
   // 菜单栏展开keys
   const [openKeys, setOpenKeys] = useState<string[]>([]);
 
-  const menuRef = useRef<Menu | null>(null);
+  const menuRef = useRef<any>(null);
 
   // 初始化点击进来的示例按钮a的dom
   const [aRef, setARef] = useState<HTMLAnchorElement>();
