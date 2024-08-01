@@ -5,7 +5,12 @@ import {
 } from '@ant-design/icons';
 import { get } from 'lodash';
 import { Affix, BackTop, Layout, Menu } from 'antd';
-import { useSidebarData, useFullSidebarData, useLocale, useSiteData } from 'dumi';
+import {
+  useSidebarData,
+  useFullSidebarData,
+  useLocale,
+  useSiteData,
+} from 'dumi';
 import Drawer from 'rc-drawer';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -135,10 +140,14 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
             const tag = get(itemChild, ['frontmatter', 'tag']);
             item.children!.push({
               ...itemChild,
-              label: tag ? <div className={styles.memuLabel}>
-                {label}
-                <div className={styles.tag}>{tag}</div>
-              </div> : label,
+              label: tag ? (
+                <div className={styles.memuLabel}>
+                  {label}
+                  <div className={styles.tag}>{tag}</div>
+                </div>
+              ) : (
+                label
+              ),
               key,
             });
           });
@@ -236,17 +245,17 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
     setPrev(
       prevNode
         ? {
-          slug: prevNode.getAttribute('link') || undefined,
-          title: prevNode.textContent || undefined,
-        }
+            slug: prevNode.getAttribute('link') || undefined,
+            title: prevNode.textContent || undefined,
+          }
         : undefined,
     );
     setNext(
       nextNode
         ? {
-          slug: nextNode.getAttribute('link') || undefined,
-          title: nextNode.textContent || undefined,
-        }
+            slug: nextNode.getAttribute('link') || undefined,
+            title: nextNode.textContent || undefined,
+          }
         : undefined,
     );
   }
@@ -281,7 +290,11 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
       }}
       selectedKeys={[defaultSelectedKey]}
       openKeys={defaultOpenKeys}
-      defaultOpenKeys={sidebarData?.map(({ title }) => title).filter((item) => item) as string[]}
+      defaultOpenKeys={
+        sidebarData
+          ?.map(({ title }) => title)
+          .filter((item) => item) as string[]
+      }
       mode="inline"
       items={renderSidebar}
       inlineIndent={16}
