@@ -1,8 +1,30 @@
-// 引入变量文件
-@import '../styles/variables.less';
+//@import "~antd/dist/antd.less";
+@black: #000;
+@primary-color: #0082ff;
+@secondary-color: #1a7bdc;
+@text-color: fade(@black, 85%);
+@font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+@border-color-split: hsv(0, 0, 94%); // split border inside a component
+@text-color-secondary: fade(@black, 45%);
 
-// 只引入基础样式，组件样式通过 babel-plugin-import 按需引入
-@import '~antd/es/style/core/index.less'; // 核心样式
+.container1440() {
+  width: 1440px;
+  max-width: calc(100% - 80px);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media only screen and (max-width: 931.99px) {
+    & {
+      max-width: calc(100% - 80px);
+    }
+  }
+
+  @media only screen and (max-width: 767.99px) {
+    & {
+      max-width: calc(100% - 32px);
+    }
+  }
+}
 
 // 非常关键，用于 react-split-pane 的样式，如果没有，会没有办法鼠标拖拽
 // 参考：https://codesandbox.io/s/mow7x4zyqx

@@ -1,5 +1,6 @@
 import React from 'react';
-import { PageHeader, Tooltip, Space, Divider } from 'antd';
+import { Tooltip, Space, Divider } from 'antd';
+import { PageHeader } from '@ant-design/pro-components';
 import { FormattedMessage } from 'dumi';
 
 import styles from './CodeHeader.module.less';
