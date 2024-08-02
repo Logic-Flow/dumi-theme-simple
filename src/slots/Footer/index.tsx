@@ -65,8 +65,8 @@ export const Footer: React.FC<FooterProps> = (props) => {
       items: [
         {
           icon: <ZhihuOutlined style={{ color: '#0084ff' }} />,
-          title: <FormattedMessage id="知乎专栏" />,
-          url: 'http://zhuanlan.zhihu.com/xtech',
+          title: <FormattedMessage id="知乎" />,
+          url: 'https://www.zhihu.com/people/logicflow-guan-fang-jun/posts',
           openExternal: true,
         },
         {
