@@ -11,14 +11,14 @@ type Company = {
 
 interface CompaniesProps {
   title: any;
-  companies: Company[];
+  companyGallery: Company;
   className?: string;
   style?: React.CSSProperties;
 }
 
-export const Companies: React.FC<CompaniesProps> = ({
+export const CompanyGallery: React.FC<CompaniesProps> = ({
   title,
-  companies = [],
+  companyGallery,
   className,
   style,
 }) => {
@@ -35,21 +35,13 @@ export const Companies: React.FC<CompaniesProps> = ({
             wrap={true}
             className={styles.companies}
           >
-            {companies.map((company) => (
-              <Col
-                key={company.name}
-                className={styles.company}
-                md={6}
-                sm={8}
-                xs={12}
-              >
-                <img
-                  className={styles.companyimg}
-                  src={company.img}
-                  alt={company.name}
-                />
-              </Col>
-            ))}
+            <Col key={companyGallery.name} className={styles.company} span={24}>
+              <img
+                src={companyGallery.img}
+                alt={companyGallery.name}
+                className={styles.companyimg}
+              />
+            </Col>
           </Row>
         </div>
       </div>

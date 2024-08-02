@@ -392,32 +392,36 @@ export default defineConfig({
           'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/examples.png',
       },
     ],
+    companyGallery: {
+      name: '企业用户展示墙',
+      img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/companylist.png',
+    },
     /** 首页合作公司 */
     companies: [
-      {
-        name: '滴滴',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/DiDiLogo.svg',
-      },
-      {
-        name: '中国科学院',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/CAOS%20Logo.svg',
-      },
-      {
-        name: '京东',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/JDLogo.svg',
-      },
-      {
-        name: '华为数字能源',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/HWLogo.svg',
-      },
-      {
-        name: 'Moka',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MokaLogo.svg',
-      },
-      {
-        name: '美团',
-        img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MTLogo.svg',
-      },
+      // {
+      //   name: '滴滴',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/DiDiLogo.svg',
+      // },
+      // {
+      //   name: '中国科学院',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/CAOS%20Logo.svg',
+      // },
+      // {
+      //   name: '京东',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/JDLogo.svg',
+      // },
+      // {
+      //   name: '华为数字能源',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/HWLogo.svg',
+      // },
+      // {
+      //   name: 'Moka',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MokaLogo.svg',
+      // },
+      // {
+      //   name: '美团',
+      //   img: 'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/MTLogo.svg',
+      // },
     ],
     // example代码编辑器设置
     editor: {

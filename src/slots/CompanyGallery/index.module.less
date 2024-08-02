@@ -1,0 +1,68 @@
+@import '../_.less';
+
+.wrapper {
+  display: flex;
+  margin: auto;
+  position: relative;
+  flex-direction: column;
+  padding: 0;
+  height: auto;
+  overflow-x: hidden;
+
+  .content {
+    height: 100%;
+    margin-bottom: 2%;
+    position: relative;
+    .container1440;
+    padding-left: 4.5%;
+  }
+
+  .title {
+    font-size: 2.714em;
+    font-weight: 500;
+    margin: 80px 0 0 0;
+    position: relative;
+    height: min-content;
+    text-align: center;
+    color: rgba(0, 0, 0, 1);
+  }
+
+  .companiesContainer {
+    position: relative;
+    margin: auto;
+    margin-top: 48px;
+
+    .company {
+      margin-bottom: 20px;
+
+      .companyimg {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    .title {
+      font-size: 1.9rem;
+      margin: 98px 0 0 0;
+    }
+
+    .content {
+      margin-left: 4.27%;
+      width: 91.64%;
+      max-width: 91.64%;
+    }
+
+    .companiesContainer {
+      margin-top: 50px;
+
+      .company {
+        .companyimg {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

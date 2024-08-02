@@ -9,6 +9,7 @@ import { Features } from '../../slots/Features';
 import { Cases } from '../../slots/Cases';
 import { CustomSlider } from '../../slots/Swipper';
 import { Companies } from '../../slots/Companies';
+import { CompanyGallery } from '../../slots/CompanyGallery';
 import { Footer } from '../../slots/Footer';
 
 /**
@@ -35,6 +36,7 @@ export const Index = () => {
     navs,
     detail,
     news,
+    companyGallery,
     companies,
     features,
     cases,
@@ -82,7 +84,13 @@ export const Index = () => {
       {size(featuresProps.features) ? <Features {...featuresProps} /> : null}
       {size(cases) ? <Cases {...casesProps} /> : null}
       <CustomSlider />
-      {size(companies) ? (
+      {companyGallery ? (
+        <CompanyGallery
+          title={<FormattedMessage id="合作伙伴" />}
+          companyGallery={companyGallery}
+        />
+      ) : null}
+      {!companyGallery && size(companies) ? (
         <Companies
           title={<FormattedMessage id="感谢信赖" />}
           companies={companies}
