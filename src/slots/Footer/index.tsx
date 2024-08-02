@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
   const { theme = footerTheme } = restProps;
 
   const getColumns = () => {
-    // 如果外部没有传入 columns，则默认展示 antv footer
+    // 如果外部没有传入 columns，则默认展示 LogicFlow footer
     const col1 = {
       title: 'Resources',
       items: [
@@ -108,13 +108,13 @@ export const Footer: React.FC<FooterProps> = (props) => {
         {
           icon: (
             <img
-              src="https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
+              src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/xiaojuLogo.png"
               alt="小桔问卷"
             />
           ),
           title: '小桔问卷',
-          url: 'https://xiaojuwenjuan.com/',
-          description: <FormattedMessage id="专业的调研/考试技术提供商" />,
+          url: 'https://github.com/didi/xiaoju-survey',
+          description: <FormattedMessage id="企业级调研服务提供商" />,
           openExternal: true,
         },
       ],
