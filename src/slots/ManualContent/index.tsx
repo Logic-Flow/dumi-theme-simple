@@ -5,19 +5,17 @@ import {
 } from '@ant-design/icons';
 import { get } from 'lodash';
 import { Affix, BackTop, Layout, Menu } from 'antd';
-import { useFullSidebarData, useLocale, useRouteMeta, useSiteData } from 'dumi';
+import { useSidebarData, useFullSidebarData, useLocale, useSiteData } from 'dumi';
 import Drawer from 'rc-drawer';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMedia } from 'react-use';
-import readingTime from 'reading-time';
 import URI from 'uri-parse';
 
 import { ContentTable } from '../ContentTable';
 import { SEO } from '../SEO';
 // import { useScrollToTop } from '../hooks';
 import { NavigatorBanner } from './NavigatorBanner';
-import ReadingTime from './ReadingTime';
 import { usePreview } from './usePreview';
 import {
   getBaseRoute,
@@ -62,23 +60,19 @@ type FullSidebarData = {
 
 type SidebarData = MenuItem[];
 
-// export type ManualMenuProps = {
-//   items: MenuItemType[],
-//
-// }
-// export const ManualMenu = ({ children }) => {
-//
-// }
-
 /**
  * 文档的结构
  */
 export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
   const locale = useLocale();
   const currentLocale: string = locale.id;
+  const sidebarData = useSidebarData();
 
   const {
-    themeConfig: { githubUrl, relativePath, docs },
+    themeConfig: {
+      // githubUrl, relativePath,
+      docs,
+    },
   } = useSiteData();
   const sidebar = useFullSidebarData() as unknown as FullSidebarData;
 
@@ -87,13 +81,6 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
 
   const [drawOpen, setDrawOpen] = useState(false);
   const navigate = useNavigate();
-
-  // 获取阅读时间
-  const mdInfo = useRouteMeta();
-  const text = mdInfo.texts.reduce((prev, next) => {
-    return prev + next.value;
-  }, '');
-  const { time } = readingTime(text);
 
   // linkToTitle用来映射路由和Title
   const linkToTitle: linkToTitle = {};
@@ -269,22 +256,22 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
     getPreAndNext();
   }, [defaultSelectedKey]);
 
-  usePreview({}, defaultSelectedKey)
+  usePreview({}, defaultSelectedKey);
 
-  const getGithubSourceUrl = ({ githubUrl, relativePath, prefix }: {
-    githubUrl: string;
-    relativePath: string;
-    prefix: string;
-  }): string => {
-    // https://github.com/antvis/x6/tree/master/packages/x6-sites
-    if (githubUrl.includes('/tree/master/')) {
-      return `${githubUrl.replace(
-        '/tree/master/',
-        '/edit/master/',
-      )}/${prefix}/${relativePath}`;
-    }
-    return `${githubUrl}/edit/master/${prefix}/${relativePath}`;
-  };
+  // const getGithubSourceUrl = ({ githubUrl, relativePath, prefix }: {
+  //   githubUrl: string;
+  //   relativePath: string;
+  //   prefix: string;
+  // }): string => {
+  //   // https://github.com/antvis/x6/tree/master/packages/x6-sites
+  //   if (githubUrl.includes('/tree/master/')) {
+  //     return `${githubUrl.replace(
+  //       '/tree/master/',
+  //       '/edit/master/',
+  //     )}/${prefix}/${relativePath}`;
+  //   }
+  //   return `${githubUrl}/edit/master/${prefix}/${relativePath}`;
+  // };
 
   const menu = (
     <Menu
@@ -294,6 +281,7 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
       }}
       selectedKeys={[defaultSelectedKey]}
       openKeys={defaultOpenKeys}
+      defaultOpenKeys={sidebarData?.map(({ title }) => title).filter((item) => item) as string[]}
       mode="inline"
       items={renderSidebar}
       inlineIndent={16}
@@ -312,26 +300,26 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
           className={styles.affix}
           style={{ height: is767Wide ? '100vh' : 'inherit' }}
         >
-          {/*{is767Wide ? (*/}
+          {is767Wide ? (
             <Layout.Sider width="auto" theme="light" className={styles.sider}>
               {menu}
             </Layout.Sider>
-          {/*) : (*/}
-          {/*  <Drawer*/}
-          {/*    handler={*/}
-          {/*      drawOpen ? (*/}
-          {/*        <MenuFoldOutlined className={styles.menuSwitch} />*/}
-          {/*      ) : (*/}
-          {/*        <MenuUnfoldOutlined className={styles.menuSwitch} />*/}
-          {/*      )*/}
-          {/*    }*/}
-          {/*    wrapperClassName={styles.menuDrawer}*/}
-          {/*    onChange={(open?: boolean) => setDrawOpen(!!open)}*/}
-          {/*    width={280}*/}
-          {/*  >*/}
-          {/*    {menu}*/}
-          {/*  </Drawer>*/}
-          {/*)}*/}
+          ) : (
+            <Drawer
+              handler={
+                drawOpen ? (
+                  <MenuFoldOutlined className={styles.menuSwitch} />
+                ) : (
+                  <MenuUnfoldOutlined className={styles.menuSwitch} />
+                )
+              }
+              wrapperClassName={styles.menuDrawer}
+              onChange={(open?: boolean) => setDrawOpen(!!open)}
+              width={280}
+            >
+              {menu}
+            </Drawer>
+          )}
         </Affix>
         <Layout.Content className={styles.content}>
           <div className={styles.main}>
@@ -354,10 +342,10 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
               </Tooltip> */}
             </h1>
             <div className={styles.readtimeContainer}>
-              <ReadingTime
-                readingTime={time}
-                className={styles.readtime}
-              ></ReadingTime>
+              {/*<ReadingTime*/}
+              {/*  readingTime={time}*/}
+              {/*  className={styles.readtime}*/}
+              {/*></ReadingTime>*/}
             </div>
             <div className={styles.markdown}>{children}</div>
             <div>

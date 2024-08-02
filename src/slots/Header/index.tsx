@@ -528,7 +528,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   );
 };
 
-export const Header: React.FC<Partial<HeaderProps>> = (props) => {
+export const Header: React.FC<Partial<HeaderProps>> = React.memo((props) => {
   const { themeConfig } = useSiteData();
   const {
     title,
@@ -587,4 +587,4 @@ export const Header: React.FC<Partial<HeaderProps>> = (props) => {
   };
 
   return <HeaderComponent {...Object.assign({}, headerProps, props)} />;
-};
+});
