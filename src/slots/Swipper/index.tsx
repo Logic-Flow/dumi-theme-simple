@@ -109,7 +109,7 @@ export function CustomSlider() {
               marginTop: '1rem',
             }}
           >
-            从个人开源开发者，到滴滴、美团这样的公司。我们已经看到 LogicFlow
+            从个人开源开发者，到滴滴、美团这样量级的公司，我们已经看到 LogicFlow
             被应用于低代码页面逻辑编排、问卷跳转逻辑配置、比赛结果预测娱乐应用以及机器学习数据处理流程等各种场景。
           </p>
           <Button href="/examples">查看更多案例</Button>
@@ -152,7 +152,7 @@ export function CustomSlider() {
         ></div>
         {map(swiperData, (data) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide key={data.title}>
               <div className="swiper-slide-wrapper">
                 <div>
                   <div className="title" data-swiper-parallax="-300">

@@ -109,12 +109,12 @@ export const Footer: React.FC<FooterProps> = (props) => {
           icon: (
             <img
               src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/homepage/xiaojuLogo.png"
-              alt="小桔问卷"
+              alt="XIAOJUSURVEY"
             />
           ),
-          title: '小桔问卷',
+          title: 'XIAOJUSURVEY',
           url: 'https://xiaojuwenjuan.com/',
-          description: <FormattedMessage id="专业的调研技术提供商" />,
+          description: <FormattedMessage id="企业级调研服务提供商" />,
           openExternal: true,
         },
       ],
