@@ -57,6 +57,8 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
           <a
             href={demo.githubUrl}
             style={{ margin: '0 10px', fontSize: '20px' }}
+            target="_blank"
+            rel="noreferrer"
           >
             <IconFontIcon type="icon-githublogo" />
           </a>
@@ -83,6 +85,8 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
           <a
             href={demo.githubUrl}
             style={{ margin: '0 10px', fontSize: '20px' }}
+            target="_blank"
+            rel="noreferrer"
           >
             <IconFontIcon type="icon-githublogo" />
           </a>
