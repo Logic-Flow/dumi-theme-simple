@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useOutlet, useLocation, useSiteData } from 'dumi';
 import { injectSpeedInsights } from '@vercel/speed-insights';
+import { inject } from '@vercel/analytics';
 import { Index } from './entry';
 import { Manual } from './entry/Manual';
 // 用户手动添加自己的
@@ -34,6 +35,7 @@ export default () => {
   const { pathname, hash } = useLocation();
   if (themeConfig.useSpeedInsights) {
     injectSpeedInsights();
+    inject();
   }
 
   // 监听 hash 变更，跳转到锚点位置
