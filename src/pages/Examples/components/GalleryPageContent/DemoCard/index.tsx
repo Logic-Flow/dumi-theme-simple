@@ -2,9 +2,15 @@ import React from 'react';
 import { Link, useLocale } from 'dumi';
 import cx from 'classnames';
 import { Badge } from 'antd';
+import { createFromIconfontCN } from '@ant-design/icons';
 import { DemoCardProps } from '../../../types';
 import { ic } from '../../../../../slots/hooks';
 import styles from '../../../index.module.less';
+
+const IconFontIcon = createFromIconfontCN({
+  scriptUrl:
+    'https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/iconfont/iconfont.js', // self generate
+});
 
 /**
  * DEMO 的卡片预览
@@ -31,12 +37,11 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
       </>
     );
   };
-
   return demo.isExternal ? (
     <a
       className={styles.galleryCardLink}
       href={demo.previewUrl}
-      target='_blank'
+      target="_blank"
       rel="noreferrer"
     >
       {demo.isNew ? (
@@ -46,7 +51,17 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
       ) : (
         renderCardInternal()
       )}
-      <h4>{ic(demo.title)}</h4>
+      <h4>
+        {ic(demo.title)}
+        {demo.githubUrl && (
+          <a
+            href={demo.githubUrl}
+            style={{ margin: '0 10px', fontSize: '20px' }}
+          >
+            <IconFontIcon type="icon-githublogo" />
+          </a>
+        )}
+      </h4>
     </a>
   ) : (
     <Link
@@ -62,7 +77,17 @@ export const DemoCard: React.FC<DemoCardProps> = (props) => {
       ) : (
         renderCardInternal()
       )}
-      <h4>{ic(demo.title)}</h4>
+      <h4>
+        {ic(demo.title)}
+        {demo.githubUrl && (
+          <a
+            href={demo.githubUrl}
+            style={{ margin: '0 10px', fontSize: '20px' }}
+          >
+            <IconFontIcon type="icon-githublogo" />
+          </a>
+        )}
+      </h4>
     </Link>
   );
 };

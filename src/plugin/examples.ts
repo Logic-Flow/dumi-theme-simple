@@ -18,13 +18,21 @@ const getExampleDemos = (exampleDir: string) => {
     .toString();
   const demoMeta: any[] = JSON.parse(demoMetaJSON).demos;
   const demos: Demo[] = demoMeta.map((item) => {
-    const { title, screenshot, filename, new: isNew, isExternal = false, previewUrl } = item;
+    const {
+      title,
+      screenshot,
+      filename,
+      new: isNew,
+      isExternal = false,
+      previewUrl,
+    } = item;
     const id = filename
       .replace(/\.tsx?$/, '')
       .replace(/\.ts?$/, '')
       .replace(/\.jsx?$/, '')
       .replace(/\.js?$/, '');
     return {
+      ...item,
       id,
       screenshot,
       source: fs
@@ -34,7 +42,7 @@ const getExampleDemos = (exampleDir: string) => {
       filename,
       isNew: !!isNew,
       isExternal,
-      previewUrl
+      previewUrl,
     };
   });
   return demos;
