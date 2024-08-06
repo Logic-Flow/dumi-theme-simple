@@ -23,7 +23,7 @@ export default defineConfig({
     footerTheme: 'light',
     siteUrl: '/', // 官网地址
     githubUrl: repository.url, // GitHub 地址
-    useSpeedInsights: false,
+    useSpeedInsights: false, // 是否使用vercel的speed-insights监控页面加载速度，开启依赖服务通过vercel部署
     showSearch: true, // 是否显示搜索框
     showGithubCorner: true, // 是否显示头部的 GitHub icon
     showGithubStars: true, // 是否显示 GitHub star 数量

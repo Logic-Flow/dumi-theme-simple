@@ -63,6 +63,7 @@
     "@logicflow/react-node-registry": "0.0.1-beta.4",
     "@monaco-editor/react": "^4.4.6",
     "@stackblitz/sdk": "^1.8.0",
+    "@vercel/analytics": "^1.3.1",
     "@vercel/speed-insights": "^1.0.12",
     "antd": "^4.23.5",
     "classnames": "^2.3.2",
