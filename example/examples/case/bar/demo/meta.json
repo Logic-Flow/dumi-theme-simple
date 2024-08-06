@@ -7,6 +7,7 @@
     {
       "isExternal": true,
       "previewUrl": "https://examples.logic-flow.cn/demo/dist/examples/#/usage/bpmn?from=doc",
+      "githubUrl": "https://github.com/didi/LogicFlow",
       "filename": "bar1.ts",
       "title": {
         "zh": "某产品行业销量分布 Top10",
