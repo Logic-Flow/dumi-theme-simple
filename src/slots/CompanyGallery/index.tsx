@@ -29,20 +29,11 @@ export const CompanyGallery: React.FC<CompaniesProps> = ({
           {title}
         </p>
         <div key="companies-container" className={styles.companiesContainer}>
-          <Row
-            key="companies"
-            gutter={[{ xs: 77, sm: 77, md: 50, lg: 124 }, 10]}
-            wrap={true}
-            className={styles.companies}
-          >
-            <Col key={companyGallery.name} className={styles.company} span={24}>
-              <img
-                src={companyGallery.img}
-                alt={companyGallery.name}
-                className={styles.companyimg}
-              />
-            </Col>
-          </Row>
+          <img
+            src={companyGallery.img}
+            alt={companyGallery.name}
+            className={styles.companyimg}
+          />
         </div>
       </div>
     </div>

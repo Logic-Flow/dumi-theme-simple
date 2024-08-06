@@ -2,7 +2,6 @@ import { defineConfig } from 'dumi';
 import { repository, version } from './package.json';
 
 export default defineConfig({
-  useSpeedInsights: false,
   locales: [
     { id: 'zh', name: '中文' },
     { id: 'en', name: 'English' },
@@ -24,6 +23,7 @@ export default defineConfig({
     footerTheme: 'light',
     siteUrl: '/', // 官网地址
     githubUrl: repository.url, // GitHub 地址
+    useSpeedInsights: false,
     showSearch: true, // 是否显示搜索框
     showGithubCorner: true, // 是否显示头部的 GitHub icon
     showGithubStars: true, // 是否显示 GitHub star 数量
