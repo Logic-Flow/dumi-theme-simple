@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useOutlet, useLocation, useSiteData } from 'dumi';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 import { Index } from './entry';
 import { Manual } from './entry/Manual';
 // 用户手动添加自己的
@@ -10,7 +11,7 @@ import '../slots/_.less';
  * DocLayout 是 dumi2 的内置 layout 入口，在这里使用页面路径进行区分成自己不同的 Layout。
  */
 export default () => {
-  const { themeConfig, loading } = useSiteData();
+  const { themeConfig, loading, useSpeedInsights } = useSiteData();
   const { navs } = themeConfig;
 
   // 打印控制台文案
@@ -31,6 +32,9 @@ export default () => {
 
   const outlet = useOutlet();
   const { pathname, hash } = useLocation();
+  if (useSpeedInsights) {
+    injectSpeedInsights();
+  }
 
   // 监听 hash 变更，跳转到锚点位置
   // 同时监听页面 loading 状态，因为路由按需加载时需要等待页面渲染完毕才能找到锚点位置
