@@ -2,6 +2,7 @@ import { defineConfig } from 'dumi';
 import { repository, version } from './package.json';
 
 export default defineConfig({
+  useSpeedInsights: false,
   locales: [
     { id: 'zh', name: '中文' },
     { id: 'en', name: 'English' },
