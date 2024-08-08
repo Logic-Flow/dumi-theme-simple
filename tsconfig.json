@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
     "strict": false,
     "declaration": true,
     "esModuleInterop": true,
@@ -13,7 +15,5 @@
       "@@/*": ["example/.dumi/tmp/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }

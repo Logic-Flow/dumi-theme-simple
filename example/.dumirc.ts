@@ -171,6 +171,14 @@ export default defineConfig({
         },
         icon: 'case',
       },
+      {
+        slug: 'extension',
+        icon: 'extension',
+        title: {
+          zh: '插件',
+          en: 'Extension',
+        },
+      },
     ],
     playground: {
       devDependencies: {
