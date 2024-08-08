@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
         },
         {
           title: 'LogicFlow Engine',
-          url: 'https://galacean.antgroup.com/effects/',
+          url: 'https://github.com/didi/LogicFlow/tree/master/packages/engine',
           openExternal: true,
         },
       ],
@@ -113,7 +113,7 @@ export const Footer: React.FC<FooterProps> = (props) => {
             />
           ),
           title: 'XIAOJUSURVEY',
-          url: 'https://xiaojuwenjuan.com/',
+          url: 'https://github.com/didi/xiaoju-survey',
           description: <FormattedMessage id="企业级调研服务提供商" />,
           openExternal: true,
         },
