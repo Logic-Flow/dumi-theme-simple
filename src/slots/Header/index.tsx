@@ -45,7 +45,7 @@ export type HeaderProps = {
   internalSite?: {
     url: string;
     name: object;
-  },
+  };
   /** 切换语言的回调 */
   onLanguageChange?: (language: string) => void;
   /** 是否二维码 */
@@ -87,20 +87,23 @@ export type HeaderProps = {
       apiKey: string;
       indexName: string;
       appId: string;
-    }
+    };
   };
   announcement?: {
-    title: IC,
+    title: IC;
     icon: string;
     link: {
-      url: string,
-      text: IC,
+      url: string;
+      text: IC;
     };
-  }
-}
+  };
+};
 
 function redirectChinaMirror(chinaMirrorOrigin: string) {
-  window.location.href = window.location.href.replace(window.location.origin, chinaMirrorOrigin);
+  window.location.href = window.location.href.replace(
+    window.location.origin,
+    chinaMirrorOrigin,
+  );
 }
 
 const ANNOUNCEMENT_LOCALSTORAGE_ID = 'ANNOUNCEMENT_LOCALSTORAGE_ID';
@@ -109,32 +112,33 @@ const ANNOUNCEMENT_LOCALSTORAGE_ID = 'ANNOUNCEMENT_LOCALSTORAGE_ID';
  * 头部菜单
  */
 const HeaderComponent: React.FC<HeaderProps> = ({
-                                                  // subTitle = '',
-                                                  navs = [],
-                                                  showSearch = true,
-                                                  showGithubCorner = true,
-                                                  showLanguageSwitcher = true,
-                                                  logo,
-                                                  onLanguageChange,
-                                                  // 默认就使用 AntV 的公众号
-                                                  showWxQrcode = true,
-                                                  siteUrl,
-                                                  githubUrl = 'https://github.com/antvis',
-                                                  // defaultLanguage,
-                                                  transparent,
+  // subTitle = '',
+  navs = [],
+  showSearch = true,
+  showGithubCorner = true,
+  showLanguageSwitcher = true,
+  logo,
+  onLanguageChange,
+  // 默认就使用 AntV 的公众号
+  showWxQrcode = true,
+  siteUrl,
+  githubUrl = 'https://github.com/antvis',
+  // defaultLanguage,
+  transparent,
 
-                                                  // rootDomain = '',
-                                                  version,
-                                                  versions,
-                                                  internalSite,
-                                                  ecosystems,
-                                                  announcement,
-                                                }) => {
+  // rootDomain = '',
+  version,
+  versions,
+  internalSite,
+  ecosystems,
+  announcement,
+}) => {
   const [bannerVisible, setBannerVisible] = useState(false);
 
   const showChinaMirror: boolean = !!internalSite;
   const chinaMirrorUrl: string = get(internalSite, 'url');
-  const [chinaMirrorHintVisible, updateChinaMirrorHintVisible] = useState(false);
+  const [chinaMirrorHintVisible, updateChinaMirrorHintVisible] =
+    useState(false);
 
   const locale = useLocale();
   const nav = useNavigate();
@@ -143,9 +147,10 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (
-        showChinaMirror && lang === 'zh'
-        && !localStorage.getItem('china-mirror-no-more-hint')
-        && window.location.host.includes('antv.vision')
+        showChinaMirror &&
+        lang === 'zh' &&
+        !localStorage.getItem('china-mirror-no-more-hint') &&
+        window.location.host.includes('antv.vision')
       ) {
         updateChinaMirrorHintVisible(true);
       }
@@ -155,11 +160,20 @@ const HeaderComponent: React.FC<HeaderProps> = ({
     };
   });
 
-  const announcementTitle = useMemo(() => get(announcement, ['title', lang]), [announcement, lang]);
-  const announcementLinkTitle = useMemo(() => get(announcement, ['link', 'text', lang]), [announcement, lang]);
+  const announcementTitle = useMemo(
+    () => get(announcement, ['title', lang]),
+    [announcement, lang],
+  );
+  const announcementLinkTitle = useMemo(
+    () => get(announcement, ['link', 'text', lang]),
+    [announcement, lang],
+  );
 
   useEffect(() => {
-    setBannerVisible(!!announcementTitle && localStorage.getItem(ANNOUNCEMENT_LOCALSTORAGE_ID) !== 'true');
+    setBannerVisible(
+      !!announcementTitle &&
+        localStorage.getItem(ANNOUNCEMENT_LOCALSTORAGE_ID) !== 'true',
+    );
   }, [announcementTitle]);
 
   function onBannerClose() {
@@ -173,7 +187,12 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   };
 
   const { img } = {
-    img: <img src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/logo-horizontal-blue.png" alt="logo" />,
+    img: (
+      <img
+        src="https://s3-gzpu.didistatic.com/ese-feedback/LogicFlow/logo-horizontal-blue.png"
+        alt="logo"
+      />
+    ),
     ...logo,
   };
 
@@ -213,25 +232,24 @@ const HeaderComponent: React.FC<HeaderProps> = ({
     >
       {
         /** 最左侧的菜单，一般是 教程、API、示例，或者其他自定义，有配置文件中的 `navs` 决定 */
-        size(navs) ?
-          <Navs navs={navs} path={window.location.pathname} /> : null
+        size(navs) ? <Navs navs={navs} path={window.location.pathname} /> : null
       }
 
       {
         /** 生态产品 */
-        size(ecosystems) ?
+        size(ecosystems) ? (
           <li>
             <Dropdown
               className={styles.ecoSystems}
               menu={{
-                items: map(ecosystems, ({ url, name: ecosystemName }) => (
-                  {
-                    key: ecosystemName?.[lang],
-                    label: <a target="_blank" rel="noreferrer" href={url}>
+                items: map(ecosystems, ({ url, name: ecosystemName }) => ({
+                  key: ecosystemName?.[lang],
+                  label: (
+                    <a target="_blank" rel="noreferrer" href={url}>
                       {ecosystemName?.[lang]} <LinkOutlined />
-                    </a>,
-                  }
-                )),
+                    </a>
+                  ),
+                })),
               }}
             >
               <span>
@@ -239,9 +257,9 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                 <DownOutlined style={{ marginLeft: '6px' }} />
               </span>
             </Dropdown>
-          </li> : null
+          </li>
+        ) : null
       }
-
 
       {showChinaMirror && isWide ? (
         <Popover
@@ -343,40 +361,40 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           </div>
         </Modal>
       )}
-
     </ul>
   );
 
   const menuAction = (
-    <ul
-      className={cx(styles.menu)}
-    >
+    <ul className={cx(styles.menu)}>
       {
         /** 版本列表 */
-        versions &&
-        <li>
-          <Select
-            defaultValue={versions[findVersion(version, Object.keys(versions))]}
-            className={styles.versions}
-            bordered={false}
-            size="small"
-            onChange={(value: string) => {
-              window.location.href = value;
-            }}
-          >
-            {Object.keys(versions).map((version: string) => {
-              const url = versions[version];
-              if (url.startsWith('http')) {
-                return (
-                  <Select.Option key={url} value={url}>
-                    {version}
-                  </Select.Option>
-                );
+        versions && (
+          <li>
+            <Select
+              defaultValue={
+                versions[findVersion(version, Object.keys(versions))]
               }
-              return null;
-            })}
-          </Select>
-        </li>
+              className={styles.versions}
+              bordered={false}
+              size="small"
+              onChange={(value: string) => {
+                window.location.href = value;
+              }}
+            >
+              {Object.keys(versions).map((version: string) => {
+                const url = versions[version];
+                if (url.startsWith('http')) {
+                  return (
+                    <Select.Option key={url} value={url}>
+                      {version}
+                    </Select.Option>
+                  );
+                }
+                return null;
+              })}
+            </Select>
+          </li>
+        )
       }
 
       {
@@ -388,44 +406,45 @@ const HeaderComponent: React.FC<HeaderProps> = ({
               menu={{
                 items: [
                   {
-                  key: 'en',
-                  label: (
-                    <span>
-                      <CheckOutlined
-                        style={{
-                          visibility: lang === 'en' ? 'visible' : 'hidden',
-                          color: '#52c41a',
-                        }}
-                      />
-                      English
-                    </span>
-                  ),
-                },{
-                  key: 'zh',
-                  label: (
-                    <span>
-                      <CheckOutlined
-                        style={{
-                          visibility: lang === 'zh' ? 'visible' : 'hidden',
-                          color: '#52c41a',
-                        }}
-                      />
-                    简体中文
-                    </span>
-                  ),
-                },
+                    key: 'en',
+                    label: (
+                      <span>
+                        <CheckOutlined
+                          style={{
+                            visibility: lang === 'en' ? 'visible' : 'hidden',
+                            color: '#52c41a',
+                          }}
+                        />
+                        English
+                      </span>
+                    ),
+                  },
+                  {
+                    key: 'zh',
+                    label: (
+                      <span>
+                        <CheckOutlined
+                          style={{
+                            visibility: lang === 'zh' ? 'visible' : 'hidden',
+                            color: '#52c41a',
+                          }}
+                        />
+                        简体中文
+                      </span>
+                    ),
+                  },
                 ],
                 onClick: ({ key }) => {
-                  if (key === lang) return
+                  if (key === lang) return;
 
-                  setLang(key)
+                  setLang(key);
                   if (onLanguageChange) {
                     onLanguageChange(key.toString());
                     return;
                   }
                   const newUrl = getLangUrl(window.location.href, key);
                   nav(newUrl.replace(window.location.origin, ''));
-                }
+                },
               }}
               className={styles.translation}
             >
@@ -433,10 +452,14 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                 className="ant-dropdown-link"
                 onClick={(e) => e.preventDefault()}
               >
-                <svg className={styles.translation} xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                     viewBox="0 0 24 24">
-                  <path
-                    d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
+                <svg
+                  className={styles.translation}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
                 </svg>
               </a>
             </Dropdown>
@@ -446,35 +469,37 @@ const HeaderComponent: React.FC<HeaderProps> = ({
 
       {
         /** 微信公众号 */
-        showWxQrcode &&
-        <li className={cx(styles.navIcon, styles.wxQrcode)}>
-          <Popover
-            content={
-              <img width="100%" height="100%"
-                   src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/qrcode-white.jpg"
-                   alt="wx-qrcode" />
-            }
-            title="微信扫一扫添加"
-            overlayClassName="wx-qrcode-popover"
-            overlayStyle={{ width: 128, height: 128 }}
-            overlayInnerStyle={{ padding: 2 }}
-          >
-            <WechatOutlined />
-          </Popover>
-        </li>
+        showWxQrcode && (
+          <li className={cx(styles.navIcon, styles.wxQrcode)}>
+            <Popover
+              content={
+                <img
+                  width="100%"
+                  height="100%"
+                  src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/qrcode-white.jpg"
+                  alt="wx-qrcode"
+                />
+              }
+              title="微信扫一扫添加"
+              overlayClassName="wx-qrcode-popover"
+              overlayStyle={{ width: 128, height: 128 }}
+              overlayInnerStyle={{ padding: 2 }}
+            >
+              <WechatOutlined />
+            </Popover>
+          </li>
+        )
       }
 
       {
         /** GitHub icon */
-        showGithubCorner &&
-        <li className={cx(styles.navIcon, styles.githubCorner)}>
-          <a
-            href={githubUrl}
-            target="_blank" rel="noreferrer"
-          >
-            <GithubOutlined />
-          </a>
-        </li>
+        showGithubCorner && (
+          <li className={cx(styles.navIcon, styles.githubCorner)}>
+            <a href={githubUrl} target="_blank" rel="noreferrer">
+              <GithubOutlined />
+            </a>
+          </li>
+        )
       }
     </ul>
   );
@@ -487,15 +512,16 @@ const HeaderComponent: React.FC<HeaderProps> = ({
         [styles.fixed]: popupMenuVisible,
       })}
     >
-      {
-        bannerVisible && announcementTitle &&
+      {bannerVisible && announcementTitle && (
         <Alert
           className={styles.banner}
           message={
             <div className={styles.topAlert}>
               {announcement.icon && <img src={announcement.icon} />}
               <div>{announcementTitle}</div>
-              {announcementLinkTitle && <a href={announcement.link.url}>{announcementLinkTitle}</a>}
+              {announcementLinkTitle && (
+                <a href={announcement.link.url}>{announcementLinkTitle}</a>
+              )}
             </div>
           }
           type="info"
@@ -504,7 +530,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           showIcon={false}
           onClose={onBannerClose}
         />
-      }
+      )}
       <div className={styles.container}>
         <div className={styles.left}>
           <Space size="large">
@@ -518,9 +544,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
           </Space>
         </div>
         <nav className={styles.nav}>
-          {
-            showSearch && <Search />
-          }
+          {showSearch && <Search />}
           {menuAction}
         </nav>
       </div>
@@ -558,9 +582,7 @@ export const Header: React.FC<Partial<HeaderProps>> = React.memo((props) => {
   const locale = useLocale();
   const path = window.location.pathname;
   const isHomePage =
-    path === '/' ||
-    path === `/${locale.id}` ||
-    path === `/${locale.id}/`;
+    path === '/' || path === `/${locale.id}` || path === `/${locale.id}/`;
 
   const headerProps = {
     subTitle: title,
