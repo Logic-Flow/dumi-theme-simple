@@ -476,7 +476,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                 <img
                   width="100%"
                   height="100%"
-                  src="https://cdn.jsdelivr.net/gh/Logic-Flow/static@latest/docs/qrcode-white.jpg"
+                  src="https://s3-gzpu.didistatic.com/ese-feedback/LogicFlow/qrcode-white.jpg"
                   alt="wx-qrcode"
                 />
               }
