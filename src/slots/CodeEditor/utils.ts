@@ -1,6 +1,6 @@
 import path from 'path';
 // @ts-ignore
-import { transform } from '@babel/standalone';
+// import { transform } from '@babel/standalone';
 import indentString from 'indent-string';
 
 export function replaceFetchUrl(sourceCode: string) {
@@ -205,7 +205,9 @@ try {
 /**
  * 编译代码
  */
-export function compile(value: string, relativePath: string, es5 = true) {
+export async function compile(value: string, relativePath: string, es5 = true) {
+  const transform = (await import('@babel/standalone')).transform;
+
   const { code } = transform(value, {
     filename: relativePath,
     presets: [

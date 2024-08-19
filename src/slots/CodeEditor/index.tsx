@@ -156,14 +156,14 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   }, []);
 
   const executeCode = useCallback(
-    debounce((v: string) => {
+    debounce(async (v: string) => {
       if (currentEditorTab !== EDITOR_TABS.JAVASCRIPT) return;
       if (!v) return;
 
       // 1. 先编译代码
       let compiled;
       try {
-        compiled = compile(replaceInsertCss(v, locale.id), relativePath, es5);
+        compiled = await compile(replaceInsertCss(v, locale.id), relativePath, es5);
       } catch (e) {
         reportError(e);
         // 执行出错，后面的步骤不用做了！
@@ -368,7 +368,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         const code = (spec) => {
           if (!full) return `(${spec})`;
           return `import { Chart } from '@antv/g2';
-          
+
           const chart = new Chart({container:'container'});
 
           chart.options(${spec});
