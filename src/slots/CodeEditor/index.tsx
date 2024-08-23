@@ -100,7 +100,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
   const locale = useLocale();
   const { themeConfig } = useSiteData();
   const { es5 = true, showSpecTab = false } = themeConfig;
-  const { extraLib = '' } = themeConfig.playground;
+  // const { extraLib = '' } = themeConfig.playground;
   // 编辑器两个 tab，分别是代码和数据
   const [data, setData] = useState(null);
   const [spec, setSpec] = useState(null);
@@ -128,9 +128,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const reportError = useCallback((e) => {
     if (e) {
-      console.log(e);
       onError(e);
-      e.preventDefault && e.preventDefault();
+      if (e?.preventDefault) {
+        e.preventDefault();
+      }
     } else {
       onError(null);
     }
@@ -190,6 +191,27 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     setData(data);
   };
 
+  // fetch 多份远程数据，如果有多份合并成一份。
+  const fetchData = async (urls) => {
+    const parseCSV = (response) => {
+      return response.text().then((text) => {
+        return dsvFormat(',').parse(text, d3AutoType);
+      });
+    };
+    const parseJSON = (response) => response.json();
+    const dataList = await Promise.all(
+      urls.map((url) =>
+        fetch(url).then((response) => {
+          const format = url.split('.').pop();
+          if (format === 'csv') return parseCSV(response);
+          return parseJSON(response);
+        }),
+      ),
+    );
+    if (dataList.length <= 1) return dataList[0];
+    return Object.fromEntries(urls.map((url, index) => [url, dataList[index]]));
+  };
+
   // 找到 spec 里面的 online data 并且更新它
   const updateDataFromSpec = (options) => {
     if (!options) return;
@@ -235,7 +257,9 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       );
     }
     return () => {
-      dom && clear(dom);
+      if (dom) {
+        clear(dom)
+      }
     };
   }, []);
 
@@ -253,26 +277,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     };
   }, []);
 
-  // fetch 多份远程数据，如果有多份合并成一份。
-  const fetchData = async (urls) => {
-    const parseCSV = (response) => {
-      return response.text().then((text) => {
-        return dsvFormat(',').parse(text, d3AutoType);
-      });
-    };
-    const parseJSON = (response) => response.json();
-    const dataList = await Promise.all(
-      urls.map((url) =>
-        fetch(url).then((response) => {
-          const format = url.split('.').pop();
-          if (format === 'csv') return parseCSV(response);
-          return parseJSON(response);
-        }),
-      ),
-    );
-    if (dataList.length <= 1) return dataList[0];
-    return Object.fromEntries(urls.map((url, index) => [url, dataList[index]]));
-  };
+
 
   // 切换 example 的时候，切换到代码编辑页面
   // 用于更新当前 example 的 spec 和 data
@@ -365,6 +370,10 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       case EDITOR_TABS.JAVASCRIPT:
         return code;
       case EDITOR_TABS.SPEC: {
+        // 动态引入 prettier 和 parserBabel 资源，减小初识打包大小
+        // const format = (await import('prettier')).format
+        // const parserBabel = await import('prettier/parser-babel')
+
         const code = (spec) => {
           if (!full) return `(${spec})`;
           return `import { Chart } from '@antv/g2';

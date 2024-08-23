@@ -175,7 +175,6 @@ export const ManualContent: React.FC<ManualContentProps> = ({ children }) => {
 
   // 获取最终的 MenuData
   const renderSidebar = getMenuData(sidebar, docs, baseRoute, []);
-  console.log('renderSidebar -->>', renderSidebar);
 
   // 获取打开的菜单栏
   const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>(() =>

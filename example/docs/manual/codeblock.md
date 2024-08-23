@@ -81,7 +81,6 @@ title: Codeblock
 ```js | ob
 (() => {
   const div = document.createElement('div');
-  console.log(a);
   return div;
 })();
 ```

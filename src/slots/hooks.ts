@@ -96,6 +96,5 @@ export function icWithLocale(v: string | object, locale) {
  */
 export function ic(v: string | object) {
   const locale = useLocale();
-  console.log('locale', locale);
   return icWithLocale(v, locale.id);
 }
