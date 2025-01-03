@@ -17,15 +17,15 @@ export const SEO: React.FC<SEOProps> = ({
   title,
   titleSuffix,
 }) => {
-  const { themeConfig } = useSiteData()
-  const { title: defaultTitle, defaultDescription } = themeConfig
+  const { themeConfig } = useSiteData();
+  const { title: defaultTitle, description: defaultDescription } = themeConfig;
 
   const metaDescription = description || defaultDescription;
 
   return (
     <Helmet
       htmlAttributes={{
-        lang
+        lang,
       }}
       title={title}
       titleTemplate={`%s | ${titleSuffix || defaultTitle}`}
@@ -45,7 +45,7 @@ export const SEO: React.FC<SEOProps> = ({
         {
           property: `og:image`,
           content:
-            'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+            'https://s3-gzpu.didistatic.com/ese-feedback/LogicFlow/2.0HeadImg.png',
         },
         {
           property: `og:type`,
@@ -66,7 +66,7 @@ export const SEO: React.FC<SEOProps> = ({
         {
           property: `twitter:image`,
           content:
-            'https://gw.alipayobjects.com/zos/antfincdn/FLrTNDvlna/antv.png',
+            'https://s3-gzpu.didistatic.com/ese-feedback/LogicFlow/2.0HeadImg.png',
         },
       ].concat(meta)}
     />
