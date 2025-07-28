@@ -438,6 +438,18 @@ export default defineConfig({
     // 百度统计的 key
     // baidu: 'baidu_tongji_key',
   },
+  // 配置 Ant Design 按需加载
+  extraBabelPlugins: [
+    [
+      'babel-plugin-import',
+      {
+        libraryName: 'antd',
+        libraryDirectory: 'es',
+        style: true, // 自动引入样式文件
+      },
+      'antd',
+    ],
+  ],
   // tnpm 安装的目录会导致 webpack 缓存快照 OOM，暂时禁用
   // 只有主题包开发需要用，其他技术栈使用的时候，不需要！
   chainWebpack(memo) {

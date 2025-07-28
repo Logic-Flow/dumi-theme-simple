@@ -1,0 +1,28 @@
+// Ant Design 变量文件
+@import '~antd/es/style/themes/default.less';
+
+@root-entry-name: default;
+
+// 自定义主题变量
+@primary-color: #0082ff;
+@secondary-color: #1a7bdc;
+
+// 容器样式 mixin
+.container1440() {
+  width: 1440px;
+  max-width: calc(100% - 80px);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media only screen and (max-width: 931.99px) {
+    & {
+      max-width: calc(100% - 80px);
+    }
+  }
+
+  @media only screen and (max-width: 767.99px) {
+    & {
+      max-width: calc(100% - 32px);
+    }
+  }
+}
