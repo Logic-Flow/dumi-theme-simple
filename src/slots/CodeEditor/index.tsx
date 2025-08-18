@@ -158,7 +158,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const executeCode = useCallback(
     debounce(async (v: string) => {
-      // debugger;
       if (currentEditorTab !== EDITOR_TABS.JAVASCRIPT) return;
       if (!v) return;
 
@@ -171,7 +170,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           es5,
         );
       } catch (e) {
-        // debugger;
         reportError(e);
         // 执行出错，后面的步骤不用做了！
         return;
@@ -252,7 +250,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     try {
       executeCode(code);
     } catch (error) {
-      // debugger;
       console.log('error', error);
     }
   }, [code]);

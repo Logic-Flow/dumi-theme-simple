@@ -178,7 +178,6 @@ export function execute(
   const node = document.getElementById(playgroundScriptContainer);
   const script = document.createElement('script');
   // replace container id in case of multi demos in document
-  // debugger;
   const newCode = code.replace(/'container'|"container"/, `'${replaceId}'`);
   console.log('newCode -->>', newCode);
   script.innerHTML = `

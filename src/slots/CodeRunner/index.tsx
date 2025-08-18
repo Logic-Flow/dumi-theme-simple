@@ -35,10 +35,6 @@ export const CodeRunner: React.FC<CodeRunnerProps> = ({
   notFound = <NotFound />,
 }) => {
   const demoInfo = getDemoInfo(exampleTopics, topic, example, demo);
-  debugger;
-
-  // 找不到，啥也别干了，404 页面
-  if (!demoInfo) return notFound;
 
   const { title, source, relativePath } = demoInfo;
 
@@ -58,23 +54,23 @@ export const CodeRunner: React.FC<CodeRunnerProps> = ({
 
   const exampleId = `${topic}_${example}_${demo}`;
 
+  // 找不到，啥也别干了，404 页面
+  if (!demoInfo) return notFound;
+
   return (
     <StrictMode>
+      {/* @ts-ignore */}
       <SplitPane
         split="vertical"
         defaultSize={`${(1 - size) * 100}%`}
         minSize={100}
       >
-        <div>123</div>
-        <div>235</div>
-        {/* <StrictMode>
-          <CodePreview
-            exampleId={exampleId}
-            error={error}
-            header={header}
-            isPlayground={isPlayground}
-          />
-        </StrictMode>
+        <CodePreview
+          exampleId={exampleId}
+          error={error}
+          header={header}
+          isPlayground={isPlayground}
+        />
         <CodeEditor
           exampleId={exampleId}
           source={source}
@@ -85,7 +81,7 @@ export const CodeRunner: React.FC<CodeRunnerProps> = ({
           onDestroy={noop}
           onReady={noop}
           playground={playground}
-        /> */}
+        />
       </SplitPane>
     </StrictMode>
   );

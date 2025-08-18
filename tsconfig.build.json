@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true,
+    "jsx": "react-jsx",
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
+    "lib": ["dom", "dom.iterable", "es6"],
+    "target": "es5",
+    "noEmitOnError": false,
+    "paths": {
+      "@@/*": ["example/.dumi/tmp/*"]
+    }
+  },
+  "include": ["src/**/*", "src/types/*.d.ts"],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "example/node_modules",
+    "example/**/*"
+  ]
+}

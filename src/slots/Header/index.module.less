@@ -8,6 +8,7 @@
   padding: 0;
   position: relative;
   z-index: 200;
+  font-size: 14px;
   font-family: Avenir, @font-family;
   transition: box-shadow 0.3s, background 0.3s;
 
@@ -46,15 +47,14 @@
     margin-bottom: -@nav-height;
 
     nav {
-
       a,
       span,
       .versions {
-        color: #424E66 !important;
+        color: #424e66 !important;
       }
 
       .translation {
-        fill: #424E66 !important;
+        fill: #424e66 !important;
       }
     }
   }
@@ -89,7 +89,7 @@
         img {
           height: 30px;
           position: relative;
-          top: -4.5px;
+          top: 1px;
         }
       }
     }
@@ -196,7 +196,7 @@
           clear: both;
         }
 
-        >span {
+        > span {
           float: left;
           height: 28px;
           transition: all 0.3s;
@@ -289,7 +289,7 @@
             height: 0;
 
             // hide mask
-            +div {
+            + div {
               display: none;
             }
           }
