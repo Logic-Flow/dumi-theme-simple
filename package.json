@@ -1,6 +1,6 @@
 {
   "name": "@logicflow/dumi-theme-simple",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "Simple website theme based on dumi2.",
   "keywords": [
     "dumi",
