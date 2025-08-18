@@ -375,7 +375,7 @@ const HeaderComponent: React.FC<HeaderProps> = ({
                 versions[findVersion(version, Object.keys(versions))]
               }
               className={styles.versions}
-              bordered={false}
+              variant="borderless"
               size="small"
               onChange={(value: string) => {
                 window.location.href = value;
@@ -483,7 +483,8 @@ const HeaderComponent: React.FC<HeaderProps> = ({
               title="微信扫一扫添加"
               overlayClassName="wx-qrcode-popover"
               overlayStyle={{ width: 128, height: 128 }}
-              overlayInnerStyle={{ padding: 2 }}
+              // overlayInnerStyle={{ padding: 2 }}
+              styles={{ body: { padding: 2 } }}
             >
               <WechatOutlined />
             </Popover>

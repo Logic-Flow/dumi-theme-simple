@@ -158,14 +158,20 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   const executeCode = useCallback(
     debounce(async (v: string) => {
+      // debugger;
       if (currentEditorTab !== EDITOR_TABS.JAVASCRIPT) return;
       if (!v) return;
 
       // 1. 先编译代码
       let compiled;
       try {
-        compiled = await compile(replaceInsertCss(v, locale.id), relativePath, es5);
+        compiled = await compile(
+          replaceInsertCss(v, locale.id),
+          relativePath,
+          es5,
+        );
       } catch (e) {
+        // debugger;
         reportError(e);
         // 执行出错，后面的步骤不用做了！
         return;
@@ -243,7 +249,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
 
   // 代码变化的时候，运行代码
   useEffect(() => {
-    executeCode(code);
+    try {
+      executeCode(code);
+    } catch (error) {
+      // debugger;
+      console.log('error', error);
+    }
   }, [code]);
 
   useEffect(() => {
@@ -258,7 +269,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
     }
     return () => {
       if (dom) {
-        clear(dom)
+        clear(dom);
       }
     };
   }, []);
@@ -276,8 +287,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
       }
     };
   }, []);
-
-
 
   // 切换 example 的时候，切换到代码编辑页面
   // 用于更新当前 example 的 spec 和 data

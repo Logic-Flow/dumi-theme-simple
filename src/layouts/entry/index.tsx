@@ -85,16 +85,10 @@ export const Index = () => {
       {size(cases) ? <Cases {...casesProps} /> : null}
       <CustomSlider />
       {companyGallery ? (
-        <CompanyGallery
-          title={<FormattedMessage id="合作伙伴" />}
-          companyGallery={companyGallery}
-        />
+        <CompanyGallery title="合作伙伴" companyGallery={companyGallery} />
       ) : null}
       {!companyGallery && size(companies) ? (
-        <Companies
-          title={<FormattedMessage id="感谢信赖" />}
-          companies={companies}
-        />
+        <Companies title="感谢信赖" companies={companies} />
       ) : null}
       <Footer columns={footerColumns} />
     </>

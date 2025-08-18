@@ -30,8 +30,8 @@ export default defineConfig({
     showLanguageSwitcher: true, // 是否显示官网语言切换
     showWxQrcode: true, // 是否显示头部菜单的微信公众号
     showChartResize: true, // 是否在 demo 页展示图表视图切换
-    showAPIDoc: true,
-    showSpecTab: true, // 是否在 demo 页展示API文档
+    showAPIDoc: false,
+    showSpecTab: false, // 是否在 demo 页展示API文档
     showLFBanner: true, // Banner是否以 Demo 的形式展示
     themeSwitcher: 'g2',
     es5: false,

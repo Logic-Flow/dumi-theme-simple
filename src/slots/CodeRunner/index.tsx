@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, StrictMode } from 'react';
 import { useSiteData, useLocale } from 'dumi';
 import { noop } from 'lodash-es';
 import SplitPane from 'react-split-pane';
@@ -19,16 +19,23 @@ type CodeRunnerProps = {
   size?: number;
   replaceId?: string;
   notFound?: React.ReactElement;
-}
+};
 
 /**
  * 代码编辑器 + 代码预览区域
  */
 export const CodeRunner: React.FC<CodeRunnerProps> = ({
-  exampleTopics, topic, example, demo, size, replaceId, isPlayground,
+  exampleTopics,
+  topic,
+  example,
+  demo,
+  size,
+  replaceId,
+  isPlayground,
   notFound = <NotFound />,
 }) => {
   const demoInfo = getDemoInfo(exampleTopics, topic, example, demo);
+  debugger;
 
   // 找不到，啥也别干了，404 页面
   if (!demoInfo) return notFound;
@@ -41,30 +48,45 @@ export const CodeRunner: React.FC<CodeRunnerProps> = ({
   const [isFullScreen, setFullscreen] = useState<boolean>(false);
   const locale = useLocale();
 
-  const header = <CodeHeader title={ic(title)} relativePath={relativePath} githubUrl={githubUrl} />;
+  const header = (
+    <CodeHeader
+      title={ic(title)}
+      relativePath={relativePath}
+      githubUrl={githubUrl}
+    />
+  );
 
   const exampleId = `${topic}_${example}_${demo}`;
 
   return (
-    // @ts-ignore
-    <SplitPane split='vertical' defaultSize={`${(1 - size) * 100}%`} minSize={100}>
-      <CodePreview
-        exampleId={exampleId}
-        error={error}
-        header={header}
-        isPlayground={isPlayground}
-      />
-      <CodeEditor
-        exampleId={exampleId}
-        source={source}
-        relativePath={relativePath}
-        replaceId={replaceId}
-        onError={setError}
-        onFullscreen={setFullscreen}
-        onDestroy={noop}
-        onReady={noop}
-        playground={playground}
-      />
-    </SplitPane>
+    <StrictMode>
+      <SplitPane
+        split="vertical"
+        defaultSize={`${(1 - size) * 100}%`}
+        minSize={100}
+      >
+        <div>123</div>
+        <div>235</div>
+        {/* <StrictMode>
+          <CodePreview
+            exampleId={exampleId}
+            error={error}
+            header={header}
+            isPlayground={isPlayground}
+          />
+        </StrictMode>
+        <CodeEditor
+          exampleId={exampleId}
+          source={source}
+          relativePath={relativePath}
+          replaceId={replaceId}
+          onError={setError}
+          onFullscreen={setFullscreen}
+          onDestroy={noop}
+          onReady={noop}
+          playground={playground}
+        /> */}
+      </SplitPane>
+    </StrictMode>
   );
-}
+};

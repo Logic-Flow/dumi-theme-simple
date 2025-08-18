@@ -1,5 +1,7 @@
 import { Chart } from '@antv/g2';
 
+console.log('area4.ts start exec');
+
 fetch(
   'https://gw.alipayobjects.com/os/bmw-prod/fbe4a8c1-ce04-4ba3-912a-0b26d6965333.json',
 )
@@ -37,3 +39,5 @@ fetch(
 
     chart.render();
   });
+
+console.log('area4.ts exec end');

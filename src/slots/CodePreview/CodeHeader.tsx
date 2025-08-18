@@ -1,10 +1,10 @@
 import React from 'react';
-import { Tooltip, Space, Divider } from 'antd';
-import { PageHeader } from '@ant-design/pro-components';
+import { Tooltip, Space, Divider, Typography } from 'antd';
 import { FormattedMessage } from 'dumi';
 
 import styles from './CodeHeader.module.less';
 
+const { Title } = Typography;
 
 export type CodeHeaderProps = {
   /**
@@ -19,8 +19,7 @@ export type CodeHeaderProps = {
    * GitHub 的地址，用于拼接最后 GitHub 编辑地址
    */
   githubUrl: string;
-
-}
+};
 
 /**
  * 组件的 header
@@ -30,27 +29,12 @@ export const CodeHeader: React.FC<any> = ({
   relativePath,
   githubUrl,
 }) => {
-
   return (
-    <PageHeader
-      ghost={false}
-      title={title}
-      // todo 编辑地址各种各样，需要有单独的配置，暂时关闭！
-      // subTitle={
-      //   <Tooltip title={<FormattedMessage id="在 GitHub 上编辑" />}>
-      //     <a
-      //       href={getGithubSourceURL(githubUrl, relativePath, 'examples')}
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //       className={styles.editOnGtiHubButton}
-      //     >
-      //       <EditOutlined />
-      //     </a>
-      //   </Tooltip>
-      // }
-      extra={
-        <Space split={<Divider type="vertical" />}></Space>
-      }
-    />
-  )
-}
+    <div className={styles.codeHeader}>
+      <Title level={4} style={{ margin: 0 }}>
+        {title}
+      </Title>
+      <Space split={<Divider type="vertical" />}></Space>
+    </div>
+  );
+};
